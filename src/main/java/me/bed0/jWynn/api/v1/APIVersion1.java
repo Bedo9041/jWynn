@@ -2,6 +2,10 @@ package me.bed0.jWynn.api.v1;
 
 import me.bed0.jWynn.WynncraftAPI;
 import me.bed0.jWynn.api.APIMidpoint;
+import me.bed0.jWynn.exceptions.APIRequestException;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 public class APIVersion1 extends APIMidpoint {
 
@@ -18,5 +22,13 @@ public class APIVersion1 extends APIMidpoint {
 
     public APIV1GuildList guildList() {
         return new APIV1GuildList(api.getConfig().getBaseURL() + "public_api.php?action=guildList", this);
+    }
+
+    public APIV1GuildStats guildStats(String guildName) {
+        try {
+            return new APIV1GuildStats(api.getConfig().getBaseURL() + "public_api.php?action=guildStats&command=" + URLEncoder.encode(guildName, "UTF-8"), this);
+        } catch (UnsupportedEncodingException ex) {
+            throw new APIRequestException(ex);
+        }
     }
 }
