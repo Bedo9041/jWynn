@@ -1,11 +1,11 @@
 package me.bed0.jWynn.api.v2.player.classes.professions;
 
-public class WynncraftPlayerClassProfessionJeweling {
+public class WynncraftPlayerClassProfession {
 
     private int level;
     private float xp;
 
-    public WynncraftPlayerClassProfessionJeweling(int level, float xp) {
+    public WynncraftPlayerClassProfession(int level, float xp) {
         this.level = level;
         this.xp = xp;
     }

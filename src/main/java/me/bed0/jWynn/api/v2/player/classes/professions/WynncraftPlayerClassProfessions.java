@@ -2,21 +2,21 @@ package me.bed0.jWynn.api.v2.player.classes.professions;
 
 public class WynncraftPlayerClassProfessions {
 
-    private WynncraftPlayerClassProfessionAlchemism alchemism;
-    private WynncraftPlayerClassProfessionArmouring armouring;
-    private WynncraftPlayerClassProfessionCombat combat;
-    private WynncraftPlayerClassProfessionCooking cooking;
-    private WynncraftPlayerClassProfessionFarming farming;
-    private WynncraftPlayerClassProfessionFishing fishing;
-    private WynncraftPlayerClassProfessionJeweling jeweling;
-    private WynncraftPlayerClassProfessionMining mining;
-    private WynncraftPlayerClassProfessionScribing scribing;
-    private WynncraftPlayerClassProfessionTailoring tailoring;
-    private WynncraftPlayerClassProfessionWeaponsmithing weaponsmithing;
-    private WynncraftPlayerClassProfessionWoodcutting woodcutting;
-    private WynncraftPlayerClassProfessionWoodworking woodworking;
+    private WynncraftPlayerClassProfession alchemism;
+    private WynncraftPlayerClassProfession armouring;
+    private WynncraftPlayerClassProfession combat;
+    private WynncraftPlayerClassProfession cooking;
+    private WynncraftPlayerClassProfession farming;
+    private WynncraftPlayerClassProfession fishing;
+    private WynncraftPlayerClassProfession jeweling;
+    private WynncraftPlayerClassProfession mining;
+    private WynncraftPlayerClassProfession scribing;
+    private WynncraftPlayerClassProfession tailoring;
+    private WynncraftPlayerClassProfession weaponsmithing;
+    private WynncraftPlayerClassProfession woodcutting;
+    private WynncraftPlayerClassProfession woodworking;
 
-    public WynncraftPlayerClassProfessions(WynncraftPlayerClassProfessionAlchemism alchemism, WynncraftPlayerClassProfessionArmouring armouring, WynncraftPlayerClassProfessionCombat combat, WynncraftPlayerClassProfessionCooking cooking, WynncraftPlayerClassProfessionFarming farming, WynncraftPlayerClassProfessionFishing fishing, WynncraftPlayerClassProfessionJeweling jeweling, WynncraftPlayerClassProfessionMining mining, WynncraftPlayerClassProfessionScribing scribing, WynncraftPlayerClassProfessionTailoring tailoring, WynncraftPlayerClassProfessionWeaponsmithing weaponsmithing, WynncraftPlayerClassProfessionWoodcutting woodcutting, WynncraftPlayerClassProfessionWoodworking woodworking) {
+    public WynncraftPlayerClassProfessions(WynncraftPlayerClassProfession alchemism, WynncraftPlayerClassProfession armouring, WynncraftPlayerClassProfession combat, WynncraftPlayerClassProfession cooking, WynncraftPlayerClassProfession farming, WynncraftPlayerClassProfession fishing, WynncraftPlayerClassProfession jeweling, WynncraftPlayerClassProfession mining, WynncraftPlayerClassProfession scribing, WynncraftPlayerClassProfession tailoring, WynncraftPlayerClassProfession weaponsmithing, WynncraftPlayerClassProfession woodcutting, WynncraftPlayerClassProfession woodworking) {
         this.alchemism = alchemism;
         this.armouring = armouring;
         this.combat = combat;
@@ -32,55 +32,55 @@ public class WynncraftPlayerClassProfessions {
         this.woodworking = woodworking;
     }
 
-    public WynncraftPlayerClassProfessionAlchemism getAlchemism() {
+    public WynncraftPlayerClassProfession getAlchemism() {
         return alchemism;
     }
 
-    public WynncraftPlayerClassProfessionArmouring getArmouring() {
+    public WynncraftPlayerClassProfession getArmouring() {
         return armouring;
     }
 
-    public WynncraftPlayerClassProfessionCombat getCombat() {
+    public WynncraftPlayerClassProfession getCombat() {
         return combat;
     }
 
-    public WynncraftPlayerClassProfessionCooking getCooking() {
+    public WynncraftPlayerClassProfession getCooking() {
         return cooking;
     }
 
-    public WynncraftPlayerClassProfessionFarming getFarming() {
+    public WynncraftPlayerClassProfession getFarming() {
         return farming;
     }
 
-    public WynncraftPlayerClassProfessionFishing getFishing() {
+    public WynncraftPlayerClassProfession getFishing() {
         return fishing;
     }
 
-    public WynncraftPlayerClassProfessionJeweling getJeweling() {
+    public WynncraftPlayerClassProfession getJeweling() {
         return jeweling;
     }
 
-    public WynncraftPlayerClassProfessionMining getMining() {
+    public WynncraftPlayerClassProfession getMining() {
         return mining;
     }
 
-    public WynncraftPlayerClassProfessionScribing getScribing() {
+    public WynncraftPlayerClassProfession getScribing() {
         return scribing;
     }
 
-    public WynncraftPlayerClassProfessionTailoring getTailoring() {
+    public WynncraftPlayerClassProfession getTailoring() {
         return tailoring;
     }
 
-    public WynncraftPlayerClassProfessionWeaponsmithing getWeaponsmithing() {
+    public WynncraftPlayerClassProfession getWeaponsmithing() {
         return weaponsmithing;
     }
 
-    public WynncraftPlayerClassProfessionWoodcutting getWoodcutting() {
+    public WynncraftPlayerClassProfession getWoodcutting() {
         return woodcutting;
     }
 
-    public WynncraftPlayerClassProfessionWoodworking getWoodworking() {
+    public WynncraftPlayerClassProfession getWoodworking() {
         return woodworking;
     }
 }
