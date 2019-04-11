@@ -33,7 +33,11 @@ public class APIVersion1 extends APIMidpoint {
         }
     }
 
-    public APIV1ItemDB itemDB(ItemCategory category) {
+    public APIV1ItemDB itemDBByCategory(ItemCategory category) {
         return new APIV1ItemDB(api.getConfig().getBaseURL() + "public_api.php?action=itemDB&category=" + category.toString().toLowerCase(), this);
+    }
+
+    public APIV1ItemDB itemDBSearch(String search) {
+        return new APIV1ItemDB(api.getConfig().getBaseURL() + "public_api.php?action=itemDB&search=" + search, this);
     }
 }
