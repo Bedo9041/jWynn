@@ -11,4 +11,8 @@ public class APIVersion1 extends APIMidpoint {
         v2 = false;
         this.api = api;
     }
+
+    public APIV1TerritoryList territoryList() {
+        return new APIV1TerritoryList(api.getConfig().getBaseURL() + "public_api.php?action=territoryList", this);
+    }
 }

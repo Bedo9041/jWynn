@@ -2,24 +2,22 @@ package me.bed0.jWynn.api;
 
 public class APIResponseV1<T> implements APIResponse<T> {
 
-    public long timestamp;
-    public long version;
-    public T data;
+    private APIResponseV1Request request;
+    private T data;
 
-    public APIResponseV1(long timestamp, long version, T data) {
-        this.timestamp = timestamp;
-        this.version = version;
+    public APIResponseV1(APIResponseV1Request request, T data) {
+        this.request = request;
         this.data = data;
     }
 
     @Override
     public String getVersion() {
-        return version + "";
+        return request.getVersion();
     }
 
     @Override
     public long getTimestamp() {
-        return timestamp;
+        return request.getTimestamp();
     }
 
     @Override
