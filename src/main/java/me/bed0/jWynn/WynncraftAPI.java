@@ -4,8 +4,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import me.bed0.jWynn.api.APIResponseV1;
+import me.bed0.jWynn.api.v1.APIV1GuildList;
 import me.bed0.jWynn.api.v1.APIV1TerritoryList;
 import me.bed0.jWynn.api.v1.APIVersion1;
+import me.bed0.jWynn.api.v1.guild.GuildList;
 import me.bed0.jWynn.api.v1.territory.WynncraftTerritory;
 import me.bed0.jWynn.api.v2.APIVersion2;
 import me.bed0.jWynn.api.v2.player.PlayerRank;
@@ -21,6 +23,7 @@ public class WynncraftAPI {
             .registerTypeAdapter(PlayerRank.class, new PlayerRank.PlayerRankDeserializer())
             .registerTypeAdapter(WynncraftTerritory[].class, new WynncraftTerritory.WynncraftTerritoryListDeserializer())
             .registerTypeAdapter(new TypeToken<APIResponseV1<WynncraftTerritory[]>>(){}.getType(), new APIV1TerritoryList.APIV1TerritoryResponseDeserializer())
+            .registerTypeAdapter(new TypeToken<APIResponseV1<GuildList>>(){}.getType(), new APIV1GuildList.APIV1GuildListResponseDeserializer())
             .create();
 
     public static final String VERSION = "0.0.1";
