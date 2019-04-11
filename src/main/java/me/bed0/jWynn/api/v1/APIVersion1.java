@@ -2,6 +2,7 @@ package me.bed0.jWynn.api.v1;
 
 import me.bed0.jWynn.WynncraftAPI;
 import me.bed0.jWynn.api.APIMidpoint;
+import me.bed0.jWynn.api.v1.item.ItemCategory;
 import me.bed0.jWynn.exceptions.APIRequestException;
 
 import java.io.UnsupportedEncodingException;
@@ -30,5 +31,9 @@ public class APIVersion1 extends APIMidpoint {
         } catch (UnsupportedEncodingException ex) {
             throw new APIRequestException(ex);
         }
+    }
+
+    public APIV1ItemDB itemDB(ItemCategory category) {
+        return new APIV1ItemDB(api.getConfig().getBaseURL() + "public_api.php?action=itemDB&category=" + category.toString().toLowerCase(), this);
     }
 }

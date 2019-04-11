@@ -4,16 +4,17 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import me.bed0.jWynn.api.APIResponseV1;
-import me.bed0.jWynn.api.v1.APIV1GuildList;
-import me.bed0.jWynn.api.v1.APIV1GuildStats;
-import me.bed0.jWynn.api.v1.APIV1TerritoryList;
-import me.bed0.jWynn.api.v1.APIVersion1;
+import me.bed0.jWynn.api.v1.*;
 import me.bed0.jWynn.api.v1.guild.GuildList;
 import me.bed0.jWynn.api.v1.guild.WynncraftGuild;
+import me.bed0.jWynn.api.v1.item.ItemTier;
+import me.bed0.jWynn.api.v1.item.WynncraftItem;
 import me.bed0.jWynn.api.v1.territory.WynncraftTerritory;
 import me.bed0.jWynn.api.v2.APIVersion2;
 import me.bed0.jWynn.api.v2.player.PlayerRank;
 import me.bed0.jWynn.config.WynncraftAPIConfig;
+
+import java.awt.*;
 
 public class WynncraftAPI {
 
@@ -27,6 +28,9 @@ public class WynncraftAPI {
             .registerTypeAdapter(new TypeToken<APIResponseV1<WynncraftTerritory[]>>(){}.getType(), new APIV1TerritoryList.APIV1TerritoryResponseDeserializer())
             .registerTypeAdapter(new TypeToken<APIResponseV1<GuildList>>(){}.getType(), new APIV1GuildList.APIV1GuildListResponseDeserializer())
             .registerTypeAdapter(new TypeToken<APIResponseV1<WynncraftGuild>>(){}.getType(), new APIV1GuildStats.APIV1GuildStatsResponseDeserializer())
+            .registerTypeAdapter(ItemTier.class, new ItemTier.ItemTierDeserializer())
+            .registerTypeAdapter(new TypeToken<APIResponseV1<WynncraftItem[]>>(){}.getType(), new APIV1ItemDB.APIV1ItemDBResponseDeserializer())
+            .registerTypeAdapter(Color.class, new WynncraftItem.ItemColorDeserializer())
             .create();
 
     public static final String VERSION = "0.0.1";
