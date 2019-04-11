@@ -25,7 +25,8 @@ public class APIV1ItemDB extends APIRequest<WynncraftItem[]> {
 
     @Override
     public APIResponse<WynncraftItem[]> runIncludeMeta() {
-        return GSON.fromJson(getReponse(), new TypeToken<APIResponseV1<WynncraftItem[]>>(){}.getType());
+        return GSON.fromJson(getReponse(), new TypeToken<APIResponseV1<WynncraftItem[]>>() {
+        }.getType());
     }
 
     public static class APIV1ItemDBResponseDeserializer implements JsonDeserializer<APIResponseV1<WynncraftItem[]>> {

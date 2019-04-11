@@ -4,10 +4,10 @@ import me.bed0.jWynn.utils.Util;
 
 public class APIMidpoint {
 
+    protected boolean v2;
     private long rateLimitResetTime = 0;
     private int rateLimitRemaining = 0;
     private int rateLimitMax = 0;
-    protected boolean v2;
 
     public void updateRateLimit(long resetTime, int remaining, int max) {
         this.rateLimitResetTime = resetTime;

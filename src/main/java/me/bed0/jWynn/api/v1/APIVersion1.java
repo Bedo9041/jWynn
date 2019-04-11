@@ -38,6 +38,18 @@ public class APIVersion1 extends APIMidpoint {
     }
 
     public APIV1ItemDB itemDBSearch(String search) {
-        return new APIV1ItemDB(api.getConfig().getBaseURL() + "public_api.php?action=itemDB&search=" + search, this);
+        try {
+            return new APIV1ItemDB(api.getConfig().getBaseURL() + "public_api.php?action=itemDB&search=" + URLEncoder.encode(search, "UTF-8"), this);
+        } catch (UnsupportedEncodingException ex) {
+            throw new APIRequestException(ex);
+        }
+    }
+
+    public APIV1StatsSearch statsSearch(String search) {
+        try {
+            return new APIV1StatsSearch(api.getConfig().getBaseURL() + "public_api.php?action=statsSearch&search=" + URLEncoder.encode(search, "UTF-8"), this);
+        } catch (UnsupportedEncodingException ex) {
+            throw new APIRequestException(ex);
+        }
     }
 }

@@ -1,7 +1,5 @@
 package me.bed0.jWynn.api.v2.player.meta;
 
-import me.bed0.jWynn.api.v2.player.PlayerTag;
-
 import java.util.Date;
 
 public class WynncraftPlayerMeta {

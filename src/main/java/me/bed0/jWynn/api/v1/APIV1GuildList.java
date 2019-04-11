@@ -25,7 +25,8 @@ public class APIV1GuildList extends APIRequest<GuildList> {
 
     @Override
     public APIResponse<GuildList> runIncludeMeta() {
-        return GSON.fromJson(getReponse(), new TypeToken<APIResponseV1<GuildList>>(){}.getType());
+        return GSON.fromJson(getReponse(), new TypeToken<APIResponseV1<GuildList>>() {
+        }.getType());
     }
 
     public static class APIV1GuildListResponseDeserializer implements JsonDeserializer<APIResponseV1<GuildList>> {
