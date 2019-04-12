@@ -1,4 +1,6 @@
-package me.bed0.jWynn.api;
+package me.bed0.jWynn.api.v2;
+
+import me.bed0.jWynn.api.APIResponse;
 
 public class APIResponseV2<T> implements APIResponse<T> {
 

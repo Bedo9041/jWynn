@@ -1,4 +1,4 @@
-package me.bed0.jWynn.api.v1;
+package me.bed0.jWynn.api.v1.endpoints;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -6,6 +6,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
 import me.bed0.jWynn.api.*;
+import me.bed0.jWynn.api.v1.APIResponseV1;
+import me.bed0.jWynn.api.v1.APIResponseV1Request;
 import me.bed0.jWynn.api.v1.guild.GuildList;
 
 import java.lang.reflect.Type;

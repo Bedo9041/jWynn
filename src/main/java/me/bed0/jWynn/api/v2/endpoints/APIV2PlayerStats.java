@@ -1,9 +1,9 @@
-package me.bed0.jWynn.api.v2;
+package me.bed0.jWynn.api.v2.endpoints;
 
 import com.google.gson.reflect.TypeToken;
 import me.bed0.jWynn.api.APIMidpoint;
 import me.bed0.jWynn.api.APIRequest;
-import me.bed0.jWynn.api.APIResponseV2;
+import me.bed0.jWynn.api.v2.APIResponseV2;
 import me.bed0.jWynn.api.v2.player.WynncraftPlayer;
 
 import static me.bed0.jWynn.WynncraftAPI.GSON;

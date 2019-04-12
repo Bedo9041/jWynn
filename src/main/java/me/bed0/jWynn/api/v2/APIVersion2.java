@@ -1,6 +1,7 @@
 package me.bed0.jWynn.api.v2;
 
 import me.bed0.jWynn.WynncraftAPI;
+import me.bed0.jWynn.api.v2.routes.APIV2Player;
 
 public class APIVersion2 {
 

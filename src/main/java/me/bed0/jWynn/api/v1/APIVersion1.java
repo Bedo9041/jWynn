@@ -2,6 +2,7 @@ package me.bed0.jWynn.api.v1;
 
 import me.bed0.jWynn.WynncraftAPI;
 import me.bed0.jWynn.api.APIMidpoint;
+import me.bed0.jWynn.api.v1.endpoints.*;
 import me.bed0.jWynn.api.v1.item.ItemCategory;
 import me.bed0.jWynn.api.v1.leaderboard.LeaderboardTimeframe;
 import me.bed0.jWynn.exceptions.APIRequestException;

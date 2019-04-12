@@ -1,8 +1,10 @@
-package me.bed0.jWynn.api.v1;
+package me.bed0.jWynn.api.v1.endpoints;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import me.bed0.jWynn.api.*;
+import me.bed0.jWynn.api.v1.APIResponseV1;
+import me.bed0.jWynn.api.v1.APIResponseV1Request;
 import me.bed0.jWynn.api.v1.network.OnlinePlayers;
 import me.bed0.jWynn.api.v1.network.ServerOnlinePlayers;
 

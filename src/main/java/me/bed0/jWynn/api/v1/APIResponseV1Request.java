@@ -1,4 +1,4 @@
-package me.bed0.jWynn.api;
+package me.bed0.jWynn.api.v1;
 
 public class APIResponseV1Request {
 
