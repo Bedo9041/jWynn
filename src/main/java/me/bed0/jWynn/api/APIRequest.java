@@ -88,7 +88,6 @@ public abstract class APIRequest<T> {
                 if (status == HttpStatus.SC_OK) {
                     HttpEntity entity = httpResponse.getEntity();
                     String returnStr = entity != null ? EntityUtils.toString(entity) : null;
-                    System.out.println(returnStr);
                     if (returnStr == null)
                         throw new APIRequestException("No body in request response for " + requestURL);
                     if (returnStr.matches("\\{\"message\":\".*\"}")) {

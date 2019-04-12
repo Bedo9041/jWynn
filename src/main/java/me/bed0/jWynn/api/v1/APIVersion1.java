@@ -3,6 +3,7 @@ package me.bed0.jWynn.api.v1;
 import me.bed0.jWynn.WynncraftAPI;
 import me.bed0.jWynn.api.APIMidpoint;
 import me.bed0.jWynn.api.v1.item.ItemCategory;
+import me.bed0.jWynn.api.v1.leaderboard.LeaderboardTimeframe;
 import me.bed0.jWynn.exceptions.APIRequestException;
 
 import java.io.UnsupportedEncodingException;
@@ -60,5 +61,17 @@ public class APIVersion1 extends APIMidpoint {
     @Deprecated
     public APIV1OnlinePlayers onlinePlayers() {
         return new APIV1OnlinePlayers(api.getConfig().getBaseURL() + "public_api.php?action=onlinePlayers", this);
+    }
+
+    public APIV1GuildLeaderboard guildLeaderboard() {
+        return new APIV1GuildLeaderboard(api.getConfig().getBaseURL() + "public_api.php?action=statsLeaderboard&type=guild&timeframe=alltime", this);
+    }
+
+    public APIV1PlayerLeaderboard playerLeaderboard() {
+        return new APIV1PlayerLeaderboard(api.getConfig().getBaseURL() + "public_api.php?action=statsLeaderboard&type=player&timeframe=alltime", this);
+    }
+
+    public APIV1PlayerLeaderboard pvpLeaderboard(LeaderboardTimeframe timeframe) {
+        return new APIV1PlayerLeaderboard(api.getConfig().getBaseURL() + "public_api.php?action=statsLeaderboard&type=pvp&timeframe=" + timeframe.toString().toLowerCase(), this);
     }
 }
