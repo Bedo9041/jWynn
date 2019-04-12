@@ -33,7 +33,7 @@ public class WynncraftAPI {
             .registerTypeAdapter(new TypeToken<APIResponseV1<StatsSearchResult>>() {}.getType(), new APIV1StatsSearch.APIV1StatsSearchResponseDeserializer())
             .registerTypeAdapter(new TypeToken<APIResponseV1<OnlinePlayerSum>>() {}.getType(), new APIV1OnlinePlayerSum.APIV1OnlinePlayerSumResponseDeserializer())
             .create();
-    public static final String VERSION = "0.0.1";
+    public static final String VERSION = "0.1.0";
     private WynncraftAPIConfig config;
     private APIVersion1 v1;
     private APIVersion2 v2;
