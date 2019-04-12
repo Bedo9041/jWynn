@@ -25,8 +25,7 @@ public class APIV1GuildStats extends APIRequest<WynncraftGuild> {
 
     @Override
     public APIResponse<WynncraftGuild> runIncludeMeta() {
-        return GSON.fromJson(getReponse(), new TypeToken<APIResponseV1<WynncraftGuild>>() {
-        }.getType());
+        return GSON.fromJson(getReponse(), new TypeToken<APIResponseV1<WynncraftGuild>>() {}.getType());
     }
 
     public static class APIV1GuildStatsResponseDeserializer implements JsonDeserializer<APIResponseV1<WynncraftGuild>> {

@@ -9,6 +9,7 @@ import me.bed0.jWynn.api.v1.guild.GuildList;
 import me.bed0.jWynn.api.v1.guild.WynncraftGuild;
 import me.bed0.jWynn.api.v1.item.ItemTier;
 import me.bed0.jWynn.api.v1.item.WynncraftItem;
+import me.bed0.jWynn.api.v1.network.OnlinePlayerSum;
 import me.bed0.jWynn.api.v1.search.StatsSearchResult;
 import me.bed0.jWynn.api.v1.territory.WynncraftTerritory;
 import me.bed0.jWynn.api.v2.APIVersion2;
@@ -22,18 +23,14 @@ public class WynncraftAPI {
     public static final Gson GSON = new GsonBuilder()
             .registerTypeAdapter(PlayerRank.class, new PlayerRank.PlayerRankDeserializer())
             .registerTypeAdapter(WynncraftTerritory[].class, new WynncraftTerritory.WynncraftTerritoryListDeserializer())
-            .registerTypeAdapter(new TypeToken<APIResponseV1<WynncraftTerritory[]>>() {
-            }.getType(), new APIV1TerritoryList.APIV1TerritoryResponseDeserializer())
-            .registerTypeAdapter(new TypeToken<APIResponseV1<GuildList>>() {
-            }.getType(), new APIV1GuildList.APIV1GuildListResponseDeserializer())
-            .registerTypeAdapter(new TypeToken<APIResponseV1<WynncraftGuild>>() {
-            }.getType(), new APIV1GuildStats.APIV1GuildStatsResponseDeserializer())
+            .registerTypeAdapter(new TypeToken<APIResponseV1<WynncraftTerritory[]>>() {}.getType(), new APIV1TerritoryList.APIV1TerritoryResponseDeserializer())
+            .registerTypeAdapter(new TypeToken<APIResponseV1<GuildList>>() {}.getType(), new APIV1GuildList.APIV1GuildListResponseDeserializer())
+            .registerTypeAdapter(new TypeToken<APIResponseV1<WynncraftGuild>>() {}.getType(), new APIV1GuildStats.APIV1GuildStatsResponseDeserializer())
             .registerTypeAdapter(ItemTier.class, new ItemTier.ItemTierDeserializer())
-            .registerTypeAdapter(new TypeToken<APIResponseV1<WynncraftItem[]>>() {
-            }.getType(), new APIV1ItemDB.APIV1ItemDBResponseDeserializer())
+            .registerTypeAdapter(new TypeToken<APIResponseV1<WynncraftItem[]>>() {}.getType(), new APIV1ItemDB.APIV1ItemDBResponseDeserializer())
             .registerTypeAdapter(Color.class, new WynncraftItem.ItemColorDeserializer())
-            .registerTypeAdapter(new TypeToken<APIResponseV1<StatsSearchResult>>() {
-            }.getType(), new APIV1StatsSearch.APIV1StatsSearchResponseDeserializer())
+            .registerTypeAdapter(new TypeToken<APIResponseV1<StatsSearchResult>>() {}.getType(), new APIV1StatsSearch.APIV1StatsSearchResponseDeserializer())
+            .registerTypeAdapter(new TypeToken<APIResponseV1<OnlinePlayerSum>>() {}.getType(), new APIV1OnlinePlayerSum.APIV1OnlinePlayerSumResponseDeserializer())
             .create();
     public static final String VERSION = "0.0.1";
     private WynncraftAPIConfig config;

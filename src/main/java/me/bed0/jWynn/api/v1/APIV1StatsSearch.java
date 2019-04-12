@@ -25,8 +25,7 @@ public class APIV1StatsSearch extends APIRequest<StatsSearchResult> {
 
     @Override
     public APIResponse<StatsSearchResult> runIncludeMeta() {
-        return GSON.fromJson(getReponse(), new TypeToken<APIResponseV1<StatsSearchResult>>() {
-        }.getType());
+        return GSON.fromJson(getReponse(), new TypeToken<APIResponseV1<StatsSearchResult>>() {}.getType());
     }
 
     public static class APIV1StatsSearchResponseDeserializer implements JsonDeserializer<APIResponseV1<StatsSearchResult>> {

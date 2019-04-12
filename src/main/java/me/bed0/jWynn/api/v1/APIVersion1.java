@@ -52,4 +52,8 @@ public class APIVersion1 extends APIMidpoint {
             throw new APIRequestException(ex);
         }
     }
+
+    public APIV1OnlinePlayerSum onlinePlayerSum() {
+        return new APIV1OnlinePlayerSum(api.getConfig().getBaseURL() + "public_api.php?action=onlinePlayersSum", this);
+    }
 }
