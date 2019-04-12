@@ -56,4 +56,9 @@ public class APIVersion1 extends APIMidpoint {
     public APIV1OnlinePlayerSum onlinePlayerSum() {
         return new APIV1OnlinePlayerSum(api.getConfig().getBaseURL() + "public_api.php?action=onlinePlayersSum", this);
     }
+
+    @Deprecated
+    public APIV1OnlinePlayers onlinePlayers() {
+        return new APIV1OnlinePlayers(api.getConfig().getBaseURL() + "public_api.php?action=onlinePlayers", this);
+    }
 }

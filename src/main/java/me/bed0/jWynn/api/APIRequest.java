@@ -3,6 +3,7 @@ package me.bed0.jWynn.api;
 import me.bed0.jWynn.WynncraftAPI;
 import me.bed0.jWynn.exceptions.APIConnectionException;
 import me.bed0.jWynn.exceptions.APIRateLimitExceededException;
+import me.bed0.jWynn.exceptions.APIRequestException;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpStatus;
@@ -87,8 +88,14 @@ public abstract class APIRequest<T> {
                 if (status == HttpStatus.SC_OK) {
                     HttpEntity entity = httpResponse.getEntity();
                     String returnStr = entity != null ? EntityUtils.toString(entity) : null;
+                    System.out.println(returnStr);
                     if (returnStr == null)
-                        throw new APIConnectionException("No body in request response for " + requestURL);
+                        throw new APIRequestException("No body in request response for " + requestURL);
+                    if (returnStr.matches("\\{\"message\":\".*\"}")) {
+                        throw new APIRequestException("API error when requesting " + requestURL + ": " + returnStr.split("\"message\":")[1].replace("\"", "").replace("}", ""));
+                    } else if (returnStr.matches("\\{\"error\":\".*\"}")) {
+                        throw new APIRequestException("API error when requesting " + requestURL + ": " + returnStr.split("\"error\":")[1].replace("\"", "").replace("}", ""));
+                    }
                     return returnStr;
                 } else {
                     throw new APIConnectionException("Unexpected status code " + status + " returned by API for request " + requestURL);
