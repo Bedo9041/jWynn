@@ -24,7 +24,7 @@ public class WynncraftTerritory {
         this.location = location;
     }
 
-    public String getTerritory() {
+    public String getName() {
         return territory;
     }
 

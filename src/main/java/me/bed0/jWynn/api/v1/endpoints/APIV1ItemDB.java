@@ -5,7 +5,9 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
-import me.bed0.jWynn.api.*;
+import me.bed0.jWynn.api.APIMidpoint;
+import me.bed0.jWynn.api.APIRequest;
+import me.bed0.jWynn.api.APIResponse;
 import me.bed0.jWynn.api.v1.APIResponseV1;
 import me.bed0.jWynn.api.v1.APIResponseV1Request;
 import me.bed0.jWynn.api.v1.item.WynncraftItem;
@@ -27,7 +29,7 @@ public class APIV1ItemDB extends APIRequest<WynncraftItem[]> {
 
     @Override
     public APIResponse<WynncraftItem[]> runIncludeMeta() {
-        return GSON.fromJson(getReponse(), new TypeToken<APIResponseV1<WynncraftItem[]>>() {}.getType());
+        return GSON.fromJson(getResponse(), new TypeToken<APIResponseV1<WynncraftItem[]>>() {}.getType());
     }
 
     public static class APIV1ItemDBResponseDeserializer implements JsonDeserializer<APIResponseV1<WynncraftItem[]>> {

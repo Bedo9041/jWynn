@@ -2,7 +2,9 @@ package me.bed0.jWynn.api.v1.endpoints;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
-import me.bed0.jWynn.api.*;
+import me.bed0.jWynn.api.APIMidpoint;
+import me.bed0.jWynn.api.APIRequest;
+import me.bed0.jWynn.api.APIResponse;
 import me.bed0.jWynn.api.v1.APIResponseV1;
 import me.bed0.jWynn.api.v1.APIResponseV1Request;
 import me.bed0.jWynn.api.v1.network.OnlinePlayers;
@@ -26,7 +28,7 @@ public class APIV1OnlinePlayers extends APIRequest<OnlinePlayers> {
 
     @Override
     public APIResponse<OnlinePlayers> runIncludeMeta() {
-        return GSON.fromJson(getReponse(), new TypeToken<APIResponseV1<OnlinePlayers>>() {}.getType());
+        return GSON.fromJson(getResponse(), new TypeToken<APIResponseV1<OnlinePlayers>>() {}.getType());
     }
 
     public static class APIV1OnlinePlayersDeserializer implements JsonDeserializer<APIResponseV1<OnlinePlayers>> {

@@ -28,7 +28,7 @@ public class APIV1TerritoryList extends APIRequest<WynncraftTerritory[]> {
 
     @Override
     public APIResponseV1<WynncraftTerritory[]> runIncludeMeta() {
-        return GSON.fromJson(getReponse(), new TypeToken<APIResponseV1<WynncraftTerritory[]>>() {}.getType());
+        return GSON.fromJson(getResponse(), new TypeToken<APIResponseV1<WynncraftTerritory[]>>() {}.getType());
     }
 
     public static class APIV1TerritoryResponseDeserializer implements JsonDeserializer<APIResponseV1<WynncraftTerritory[]>> {

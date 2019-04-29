@@ -22,6 +22,6 @@ public class APIV2PlayerUUID extends APIRequest<WynncraftPlayerUUID[]> {
 
     @Override
     public APIResponse<WynncraftPlayerUUID[]> runIncludeMeta() {
-        return GSON.fromJson(getReponse(), new TypeToken<APIResponseV2<WynncraftPlayerUUID[]>>() {}.getType());
+        return GSON.fromJson(getResponse(), new TypeToken<APIResponseV2<WynncraftPlayerUUID[]>>() {}.getType());
     }
 }

@@ -1,6 +1,6 @@
 package me.bed0.jWynn.api;
 
-import me.bed0.jWynn.WynncraftAPI;
+import edu.umd.cs.findbugs.annotations.CheckReturnValue;
 import me.bed0.jWynn.exceptions.APIConnectionException;
 import me.bed0.jWynn.exceptions.APIRateLimitExceededException;
 import me.bed0.jWynn.exceptions.APIRequestException;
@@ -29,7 +29,7 @@ public abstract class APIRequest<T> {
     private APIMidpoint midpoint;
 
     public APIRequest(String requestURL, APIMidpoint midpoint) {
-        this(requestURL, new ArrayList<>(), "jWynn/" + WynncraftAPI.VERSION, 10000, midpoint, false);
+        this(requestURL, new ArrayList<>(), midpoint.getAPIConfig().getDefaultUserAgent(), midpoint.getAPIConfig().getDefaultConnectionTimeout(), midpoint, false);
     }
 
     public APIRequest(String requestURL, List<Header> requestHeaders, String userAgent, int timeout, APIMidpoint midpoint, boolean ignoreRateLimit) {
@@ -45,34 +45,39 @@ public abstract class APIRequest<T> {
 
     public abstract APIResponse<T> runIncludeMeta();
 
+    @CheckReturnValue
     public APIRequest<T> withHeader(Header header) {
         this.requestHeaders.add(header);
         return this;
     }
 
+    @CheckReturnValue
     public APIRequest<T> toURL(String requestURL) {
         this.requestURL = requestURL;
         return this;
     }
 
+    @CheckReturnValue
     public APIRequest<T> asAgent(String userAgent) {
         this.userAgent = userAgent;
         return this;
     }
 
+    @CheckReturnValue
     public APIRequest<T> withTimeout(int timeout) {
         this.timeout = timeout;
         return this;
     }
 
+    @CheckReturnValue
     public APIRequest<T> ignoreRateLimit() {
         this.ignoreRateLimit = true;
         return this;
     }
 
-    protected String getReponse() {
+    protected String getResponse() {
         if (!ignoreRateLimit && midpoint.isRateLimited())
-            throw new APIRateLimitExceededException("Cannot execute request " + requestURL + ", rate limit exceeded", midpoint.getRateLimitReset(), false);
+            throw new APIRateLimitExceededException("Cannot execute request " + requestURL + ", rate limit would be exceeded", midpoint.getRateLimitReset(), false);
         RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(timeout).setSocketTimeout(timeout).build();
         try (CloseableHttpClient client = HttpClients.custom().setDefaultRequestConfig(requestConfig).build()) {
             HttpGet httpGet = new HttpGet(requestURL);
@@ -80,10 +85,16 @@ public abstract class APIRequest<T> {
             httpGet.setHeaders(this.requestHeaders.toArray(requestHeaders));
             httpGet.setHeader("user-agent", userAgent);
             ResponseHandler<String> handler = httpResponse -> {
-                long rateLimitReset = Long.parseLong(httpResponse.getFirstHeader("x-ratelimit-reset").getValue());
-                int rateLimitMax = Integer.parseInt(httpResponse.getFirstHeader("x-ratelimit-limit").getValue());
-                int rateLimitRemaining = Integer.parseInt(httpResponse.getFirstHeader("x-ratelimit-remaining").getValue());
-                midpoint.updateRateLimit(rateLimitReset, rateLimitRemaining, rateLimitMax);
+                if (midpoint.getAPIConfig().isHandleRatelimits()) {
+                    try {
+                        long rateLimitReset = Long.parseLong(httpResponse.getFirstHeader("x-ratelimit-reset").getValue());
+                        int rateLimitMax = Integer.parseInt(httpResponse.getFirstHeader("x-ratelimit-limit").getValue());
+                        int rateLimitRemaining = Integer.parseInt(httpResponse.getFirstHeader("x-ratelimit-remaining").getValue());
+                        midpoint.updateRateLimit(rateLimitReset, rateLimitRemaining, rateLimitMax);
+                    } catch (NumberFormatException | NullPointerException ignored) {
+                        midpoint.decrementRateLimit();
+                    }
+                }
                 int status = httpResponse.getStatusLine().getStatusCode();
                 if (status == HttpStatus.SC_OK) {
                     HttpEntity entity = httpResponse.getEntity();
@@ -96,6 +107,18 @@ public abstract class APIRequest<T> {
                         throw new APIRequestException("API error when requesting " + requestURL + ": " + returnStr.split("\"error\":")[1].replace("\"", "").replace("}", ""));
                     }
                     return returnStr;
+                } else if (status == HttpStatus.SC_BAD_REQUEST) {
+                    throw new APIRequestException("400: Bad Request for " + requestURL);
+                } else if (status == 429 /* Too Many Requests */) {
+                    long resetTime;
+                    try {
+                        resetTime = Long.parseLong(httpResponse.getFirstHeader("x-ratelimit-reset").getValue());
+                    } catch (NumberFormatException ex) {
+                        resetTime = -1;
+                    }
+                    throw new APIRateLimitExceededException("429: Too Many Requests for " + requestURL, resetTime, true);
+                } else if (status == HttpStatus.SC_NOT_FOUND) {
+                    throw new APIRequestException("404: Not Found for " + requestURL);
                 } else {
                     throw new APIConnectionException("Unexpected status code " + status + " returned by API for request " + requestURL);
                 }

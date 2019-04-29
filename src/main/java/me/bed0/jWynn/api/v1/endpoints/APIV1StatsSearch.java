@@ -5,7 +5,9 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
-import me.bed0.jWynn.api.*;
+import me.bed0.jWynn.api.APIMidpoint;
+import me.bed0.jWynn.api.APIRequest;
+import me.bed0.jWynn.api.APIResponse;
 import me.bed0.jWynn.api.v1.APIResponseV1;
 import me.bed0.jWynn.api.v1.APIResponseV1Request;
 import me.bed0.jWynn.api.v1.search.StatsSearchResult;
@@ -27,7 +29,7 @@ public class APIV1StatsSearch extends APIRequest<StatsSearchResult> {
 
     @Override
     public APIResponse<StatsSearchResult> runIncludeMeta() {
-        return GSON.fromJson(getReponse(), new TypeToken<APIResponseV1<StatsSearchResult>>() {}.getType());
+        return GSON.fromJson(getResponse(), new TypeToken<APIResponseV1<StatsSearchResult>>() {}.getType());
     }
 
     public static class APIV1StatsSearchResponseDeserializer implements JsonDeserializer<APIResponseV1<StatsSearchResult>> {
