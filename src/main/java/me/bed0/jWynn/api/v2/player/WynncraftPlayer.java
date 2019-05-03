@@ -1,5 +1,8 @@
 package me.bed0.jWynn.api.v2.player;
 
+import edu.umd.cs.findbugs.annotations.CheckReturnValue;
+import me.bed0.jWynn.WynncraftAPI;
+import me.bed0.jWynn.api.v2.endpoints.APIV2PlayerStats;
 import me.bed0.jWynn.api.v2.player.classes.WynncraftPlayerClass;
 import me.bed0.jWynn.api.v2.player.global.WynncraftPlayerGlobal;
 import me.bed0.jWynn.api.v2.player.meta.WynncraftPlayerMeta;
@@ -57,5 +60,10 @@ public class WynncraftPlayer {
 
     public WynncraftPlayerRanking getRanking() {
         return ranking;
+    }
+
+    @CheckReturnValue
+    public APIV2PlayerStats getRefreshRequest() {
+        return WynncraftAPI.getApi().v2().player().stats(username);
     }
 }

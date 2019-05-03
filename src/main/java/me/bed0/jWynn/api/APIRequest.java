@@ -4,6 +4,7 @@ import edu.umd.cs.findbugs.annotations.CheckReturnValue;
 import me.bed0.jWynn.exceptions.APIConnectionException;
 import me.bed0.jWynn.exceptions.APIRateLimitExceededException;
 import me.bed0.jWynn.exceptions.APIRequestException;
+import me.bed0.jWynn.exceptions.APIResponseException;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpStatus;
@@ -41,34 +42,59 @@ public abstract class APIRequest<T> {
         this.ignoreRateLimit = ignoreRateLimit;
     }
 
+    /**
+     * Run this request, getting the response data directly (therefore destroying meta data)
+     * */
     public abstract T run();
 
+    /**
+     * Run this request, the data returned is wrapped inside a APIResponse object, that also
+     * contains the request meta data
+     * */
     public abstract APIResponse<T> runIncludeMeta();
 
+    /**
+     * When this request is run, the specified HTTP header will be included with the request
+     * */
     @CheckReturnValue
     public APIRequest<T> withHeader(Header header) {
         this.requestHeaders.add(header);
         return this;
     }
 
+    /**
+     * When this request is run, it will instead be sent to the specified URL
+     * */
     @CheckReturnValue
     public APIRequest<T> toURL(String requestURL) {
         this.requestURL = requestURL;
         return this;
     }
 
+    /**
+     * When this request is run, the user agent the request would normally be made as is
+     * replaced with this agent
+     * */
     @CheckReturnValue
     public APIRequest<T> asAgent(String userAgent) {
         this.userAgent = userAgent;
         return this;
     }
 
+    /**
+     * When this request is run, instead of timing-out the request with the timeout specified
+     * by the API config, instead timeout the request after this amount of time (milliseconds)
+     * */
     @CheckReturnValue
     public APIRequest<T> withTimeout(int timeout) {
         this.timeout = timeout;
         return this;
     }
 
+    /**
+     * When this request is run, don't do any rate limit management. The internal rate limits will
+     * not be checked and won't be updated after the response is received
+     * */
     @CheckReturnValue
     public APIRequest<T> ignoreRateLimit() {
         this.ignoreRateLimit = true;
@@ -100,15 +126,15 @@ public abstract class APIRequest<T> {
                     HttpEntity entity = httpResponse.getEntity();
                     String returnStr = entity != null ? EntityUtils.toString(entity) : null;
                     if (returnStr == null)
-                        throw new APIRequestException("No body in request response for " + requestURL);
+                        throw new APIResponseException("No body in request response for " + requestURL);
                     if (returnStr.matches("\\{\"message\":\".*\"}")) {
-                        throw new APIRequestException("API error when requesting " + requestURL + ": " + returnStr.split("\"message\":")[1].replace("\"", "").replace("}", ""));
+                        throw new APIResponseException("API error when requesting " + requestURL + ": " + returnStr.split("\"message\":")[1].replace("\"", "").replace("}", ""));
                     } else if (returnStr.matches("\\{\"error\":\".*\"}")) {
-                        throw new APIRequestException("API error when requesting " + requestURL + ": " + returnStr.split("\"error\":")[1].replace("\"", "").replace("}", ""));
+                        throw new APIResponseException("API error when requesting " + requestURL + ": " + returnStr.split("\"error\":")[1].replace("\"", "").replace("}", ""));
                     }
                     return returnStr;
                 } else if (status == HttpStatus.SC_BAD_REQUEST) {
-                    throw new APIRequestException("400: Bad Request for " + requestURL);
+                    throw new APIResponseException("400: Bad Request for " + requestURL);
                 } else if (status == 429 /* Too Many Requests */) {
                     long resetTime;
                     try {
@@ -118,9 +144,9 @@ public abstract class APIRequest<T> {
                     }
                     throw new APIRateLimitExceededException("429: Too Many Requests for " + requestURL, resetTime, true);
                 } else if (status == HttpStatus.SC_NOT_FOUND) {
-                    throw new APIRequestException("404: Not Found for " + requestURL);
+                    throw new APIResponseException("404: Not Found for " + requestURL);
                 } else {
-                    throw new APIConnectionException("Unexpected status code " + status + " returned by API for request " + requestURL);
+                    throw new APIResponseException("Unexpected status code " + status + " returned by API for request " + requestURL);
                 }
             };
             return client.execute(httpGet, handler);

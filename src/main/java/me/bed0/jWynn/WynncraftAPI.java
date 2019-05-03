@@ -11,6 +11,7 @@ import me.bed0.jWynn.api.v1.guild.GuildList;
 import me.bed0.jWynn.api.v1.guild.WynncraftGuild;
 import me.bed0.jWynn.api.v1.item.ItemTier;
 import me.bed0.jWynn.api.v1.item.WynncraftItem;
+import me.bed0.jWynn.api.v1.map.WynncraftMapLocation;
 import me.bed0.jWynn.api.v1.network.OnlinePlayerSum;
 import me.bed0.jWynn.api.v1.search.StatsSearchResult;
 import me.bed0.jWynn.api.v1.territory.WynncraftTerritory;
@@ -33,11 +34,14 @@ public class WynncraftAPI {
             .registerTypeAdapter(Color.class, new WynncraftItem.ItemColorDeserializer())
             .registerTypeAdapter(new TypeToken<APIResponseV1<StatsSearchResult>>() {}.getType(), new APIV1StatsSearch.APIV1StatsSearchResponseDeserializer())
             .registerTypeAdapter(new TypeToken<APIResponseV1<OnlinePlayerSum>>() {}.getType(), new APIV1OnlinePlayerSum.APIV1OnlinePlayerSumResponseDeserializer())
+            .registerTypeAdapter(new TypeToken<APIResponseV1<WynncraftMapLocation[]>>() {}.getType(), new APIV1MapLocations.APIV1MapLocationsResponseDeserializer())
             .create();
-    public static final String VERSION = "0.1.1";
+    public static final String VERSION = "0.1.2";
     private WynncraftAPIConfig config;
     private APIVersion1 v1;
     private APIVersion2 v2;
+
+    private static WynncraftAPI INSTANCE;
 
     public WynncraftAPI() {
         this(new WynncraftAPIConfig());
@@ -47,6 +51,8 @@ public class WynncraftAPI {
         this.config = config;
         this.v1 = new APIVersion1(this);
         this.v2 = new APIVersion2(this);
+
+        WynncraftAPI.INSTANCE = this;
     }
 
     @CheckReturnValue
@@ -61,5 +67,9 @@ public class WynncraftAPI {
 
     public WynncraftAPIConfig getConfig() {
         return config;
+    }
+
+    public static WynncraftAPI getApi() {
+        return WynncraftAPI.INSTANCE;
     }
 }

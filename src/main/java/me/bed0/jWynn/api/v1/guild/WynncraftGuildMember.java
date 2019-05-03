@@ -1,6 +1,9 @@
 package me.bed0.jWynn.api.v1.guild;
 
+import edu.umd.cs.findbugs.annotations.CheckReturnValue;
+import me.bed0.jWynn.WynncraftAPI;
 import me.bed0.jWynn.api.common.GuildRank;
+import me.bed0.jWynn.api.v2.endpoints.APIV2PlayerStats;
 
 import java.util.Date;
 
@@ -38,5 +41,10 @@ public class WynncraftGuildMember {
 
     public Date getJoined() {
         return joined;
+    }
+
+    @CheckReturnValue
+    public APIV2PlayerStats getDetailsRequest() {
+        return WynncraftAPI.getApi().v2().player().stats(name);
     }
 }

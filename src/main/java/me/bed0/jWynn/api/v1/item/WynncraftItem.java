@@ -446,6 +446,58 @@ public class WynncraftItem {
         return skin;
     }
 
+    /**
+     * Get the minimum value for the input stat
+     *
+     * @param stat The stat value returned by the API
+     * */
+    public static int getStatMin(int stat) {
+        if (stat < 0) {
+            return (int) Math.min(Math.round(stat * 0.7d), -1);
+        } else {
+            return (int) Math.max(Math.round(stat * 0.3d), 1);
+        }
+    }
+
+    /**
+     * Get the maximum value for the input stat
+     *
+     * @param stat The stat value returned by the API
+     * */
+    public static int getStatMax(int stat) {
+        if (stat < 0) {
+            return (int) Math.min(Math.round(stat * 1.3d), -1);
+        } else {
+            return (int) Math.max(Math.round(stat * 1.3d), 1);
+        }
+    }
+
+    /**
+     * Get the percentage value of a stat given the base stat and the value
+     * to check the percentage of
+     *
+     * @param stat The base stat returned by the API
+     * @param statVal The value of the stat to get the percentage of
+     * */
+    public static double getStatPercent(int stat, int statVal) {
+        return getStatPercent(getStatMin(stat), getStatMax(stat), statVal);
+    }
+
+    /**
+     * Get the percentage value of a stat
+     *
+     * @param statMin The minimum value of the stat
+     * @param statMax The maximum value of the stat
+     * @param statVal The value of the stat to get the percentage of
+     * */
+    public static double getStatPercent(int statMin, int statMax, int statVal) {
+        double variation = (double) (statMax - statMin);
+        double amountAboveMin = (double) (statVal - statMin);
+        double percent = variation / amountAboveMin;
+        if (percent < 0) percent = 1 - percent;
+        return percent;
+    }
+
     public static class ItemColorDeserializer implements JsonDeserializer<Color> {
         @Override
         public Color deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {

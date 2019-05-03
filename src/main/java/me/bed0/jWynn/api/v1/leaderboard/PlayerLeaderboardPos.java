@@ -1,5 +1,8 @@
 package me.bed0.jWynn.api.v1.leaderboard;
 
+import edu.umd.cs.findbugs.annotations.CheckReturnValue;
+import me.bed0.jWynn.WynncraftAPI;
+import me.bed0.jWynn.api.v2.endpoints.APIV2PlayerStats;
 import me.bed0.jWynn.api.v2.player.PlayerRank;
 import me.bed0.jWynn.api.v2.player.PlayerTag;
 
@@ -85,5 +88,10 @@ public class PlayerLeaderboardPos {
 
     public int getNum() {
         return num;
+    }
+
+    @CheckReturnValue
+    public APIV2PlayerStats getDetailsRequest() {
+        return WynncraftAPI.getApi().v2().player().stats(name);
     }
 }

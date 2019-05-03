@@ -1,5 +1,9 @@
 package me.bed0.jWynn.api.v1.leaderboard;
 
+import edu.umd.cs.findbugs.annotations.CheckReturnValue;
+import me.bed0.jWynn.WynncraftAPI;
+import me.bed0.jWynn.api.v1.endpoints.APIV1GuildStats;
+
 import java.util.Date;
 
 public class GuildLeaderboardPos {
@@ -55,5 +59,10 @@ public class GuildLeaderboardPos {
 
     public int getNum() {
         return num;
+    }
+
+    @CheckReturnValue
+    public APIV1GuildStats getDetailsRequest() {
+        return WynncraftAPI.getApi().v1().guildStats(name);
     }
 }

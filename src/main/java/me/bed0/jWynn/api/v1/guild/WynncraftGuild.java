@@ -1,5 +1,9 @@
 package me.bed0.jWynn.api.v1.guild;
 
+import edu.umd.cs.findbugs.annotations.CheckReturnValue;
+import me.bed0.jWynn.WynncraftAPI;
+import me.bed0.jWynn.api.v1.endpoints.APIV1GuildStats;
+
 import java.util.Date;
 
 public class WynncraftGuild {
@@ -48,5 +52,10 @@ public class WynncraftGuild {
 
     public int getTerritories() {
         return territories;
+    }
+
+    @CheckReturnValue
+    public APIV1GuildStats getRerunRequest() {
+        return WynncraftAPI.getApi().v1().guildStats(name);
     }
 }

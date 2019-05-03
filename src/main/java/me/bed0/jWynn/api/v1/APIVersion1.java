@@ -73,7 +73,6 @@ public class APIVersion1 extends APIMidpoint {
         return new APIV1OnlinePlayerSum(api.getConfig().getBaseURL() + "public_api.php?action=onlinePlayersSum", this);
     }
 
-    @Deprecated
     @CheckReturnValue
     public APIV1OnlinePlayers onlinePlayers() {
         return new APIV1OnlinePlayers(api.getConfig().getBaseURL() + "public_api.php?action=onlinePlayers", this);
@@ -92,5 +91,11 @@ public class APIVersion1 extends APIMidpoint {
     @CheckReturnValue
     public APIV1PlayerLeaderboard pvpLeaderboard(LeaderboardTimeframe timeframe) {
         return new APIV1PlayerLeaderboard(api.getConfig().getBaseURL() + "public_api.php?action=statsLeaderboard&type=pvp&timeframe=" + timeframe.toString().toLowerCase(), this);
+    }
+
+    @CheckReturnValue
+    @Deprecated
+    public APIV1MapLocations mapLocations() {
+        return new APIV1MapLocations(api.getConfig().getBaseURL() + "public_api.php?action=mapLocations", this);
     }
 }
