@@ -2,15 +2,14 @@ package me.bed0.jWynn.exceptions;
 
 public class APIResponseException extends APIException {
 
-    public APIResponseException(String message) {
+    private int statusCode;
+
+    public APIResponseException(String message, int statusCode) {
         super(message);
+        this.statusCode = statusCode;
     }
 
-    public APIResponseException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
-    public APIResponseException(Throwable cause) {
-        super(cause);
+    public int getStatusCode() {
+        return statusCode;
     }
 }

@@ -21,6 +21,9 @@ public class APIV2Player extends APIMidpoint {
         return api.getConfig();
     }
 
+    /**
+     * See <a href="https://docs.wynncraft.com/Player-API/#statistics>https://docs.wynncraft.com/Player-API/#statistics</a>
+     * */
     @CheckReturnValue
     public APIV2PlayerStats stats(String playerName) {
         if (!playerName.matches("[a-zA-Z0-9_]{1,16}"))
@@ -28,6 +31,10 @@ public class APIV2Player extends APIMidpoint {
         return new APIV2PlayerStats(api.getConfig().getBaseURL() + "v2/player/" + playerName + "/stats", this);
     }
 
+    /**
+     * See <a href="https://docs.wynncraft.com/Player-API/#uuid">https://docs.wynncraft.com/Player-API/#uuid</a>
+     * @deprecated Use Mojang's API instead
+     * */
     @CheckReturnValue
     @Deprecated
     public APIV2PlayerUUID uuid(String playerName) {

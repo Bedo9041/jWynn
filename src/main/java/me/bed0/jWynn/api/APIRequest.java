@@ -126,15 +126,15 @@ public abstract class APIRequest<T> {
                     HttpEntity entity = httpResponse.getEntity();
                     String returnStr = entity != null ? EntityUtils.toString(entity) : null;
                     if (returnStr == null)
-                        throw new APIResponseException("No body in request response for " + requestURL);
+                        throw new APIResponseException("No body in request response for " + requestURL, -1);
                     if (returnStr.matches("\\{\"message\":\".*\"}")) {
-                        throw new APIResponseException("API error when requesting " + requestURL + ": " + returnStr.split("\"message\":")[1].replace("\"", "").replace("}", ""));
+                        throw new APIResponseException("API error when requesting " + requestURL + ": " + returnStr.split("\"message\":")[1].replace("\"", "").replace("}", ""), -1);
                     } else if (returnStr.matches("\\{\"error\":\".*\"}")) {
-                        throw new APIResponseException("API error when requesting " + requestURL + ": " + returnStr.split("\"error\":")[1].replace("\"", "").replace("}", ""));
+                        throw new APIResponseException("API error when requesting " + requestURL + ": " + returnStr.split("\"error\":")[1].replace("\"", "").replace("}", ""), -1);
                     }
                     return returnStr;
                 } else if (status == HttpStatus.SC_BAD_REQUEST) {
-                    throw new APIResponseException("400: Bad Request for " + requestURL);
+                    throw new APIRequestException("400: Bad Request for " + requestURL);
                 } else if (status == 429 /* Too Many Requests */) {
                     long resetTime;
                     try {
@@ -144,9 +144,11 @@ public abstract class APIRequest<T> {
                     }
                     throw new APIRateLimitExceededException("429: Too Many Requests for " + requestURL, resetTime, true);
                 } else if (status == HttpStatus.SC_NOT_FOUND) {
-                    throw new APIResponseException("404: Not Found for " + requestURL);
+                    throw new APIResponseException("404: Not Found for " + requestURL, 404);
+                } else if (status == HttpStatus.SC_SERVICE_UNAVAILABLE) {
+                    throw new APIResponseException("503: Service Unavailable " + requestURL, 503);
                 } else {
-                    throw new APIResponseException("Unexpected status code " + status + " returned by API for request " + requestURL);
+                    throw new APIResponseException("Unexpected status code " + status + " returned by API for request " + requestURL, status);
                 }
             };
             return client.execute(httpGet, handler);

@@ -1,7 +1,7 @@
 package me.bed0.jWynn.api;
 
+import me.bed0.jWynn.WynncraftAPI;
 import me.bed0.jWynn.config.WynncraftAPIConfig;
-import me.bed0.jWynn.utils.Util;
 
 public abstract class APIMidpoint {
 
@@ -10,7 +10,7 @@ public abstract class APIMidpoint {
     private int rateLimitRemaining = 0;
     private int rateLimitMax = 0;
 
-    public void updateRateLimit(long resetTime, int remaining, int max) {
+    public synchronized void updateRateLimit(long resetTime, int remaining, int max) {
         if (remaining < rateLimitRemaining || resetTime > rateLimitResetTime) {
             this.rateLimitResetTime = resetTime;
             this.rateLimitRemaining = remaining;
@@ -31,10 +31,10 @@ public abstract class APIMidpoint {
     }
 
     public boolean isRateLimited() {
-        return !getAPIConfig().isHandleRatelimits() || ((rateLimitRemaining <= 0) && rateLimitResetTime > Util.getUnixTimestamp());
+        return !getAPIConfig().isHandleRatelimits() || ((rateLimitRemaining <= 0) && rateLimitResetTime > WynncraftAPI.getUnixTimestamp());
     }
 
-    public void decrementRateLimit() {
+    public synchronized void decrementRateLimit() {
         this.rateLimitRemaining -= 1;
     }
 

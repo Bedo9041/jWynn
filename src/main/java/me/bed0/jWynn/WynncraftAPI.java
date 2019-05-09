@@ -24,15 +24,15 @@ import java.awt.*;
 public class WynncraftAPI {
 
     public static final Gson GSON = new GsonBuilder()
+            .registerTypeAdapter(ItemTier.class, new ItemTier.ItemTierDeserializer())
+            .registerTypeAdapter(Color.class, new WynncraftItem.ItemColorDeserializer())
             .registerTypeAdapter(PlayerRank.class, new PlayerRank.PlayerRankDeserializer())
             .registerTypeAdapter(WynncraftTerritory[].class, new WynncraftTerritory.WynncraftTerritoryListDeserializer())
-            .registerTypeAdapter(new TypeToken<APIResponseV1<WynncraftTerritory[]>>() {}.getType(), new APIV1TerritoryList.APIV1TerritoryResponseDeserializer())
             .registerTypeAdapter(new TypeToken<APIResponseV1<GuildList>>() {}.getType(), new APIV1GuildList.APIV1GuildListResponseDeserializer())
-            .registerTypeAdapter(new TypeToken<APIResponseV1<WynncraftGuild>>() {}.getType(), new APIV1GuildStats.APIV1GuildStatsResponseDeserializer())
-            .registerTypeAdapter(ItemTier.class, new ItemTier.ItemTierDeserializer())
             .registerTypeAdapter(new TypeToken<APIResponseV1<WynncraftItem[]>>() {}.getType(), new APIV1ItemDB.APIV1ItemDBResponseDeserializer())
-            .registerTypeAdapter(Color.class, new WynncraftItem.ItemColorDeserializer())
+            .registerTypeAdapter(new TypeToken<APIResponseV1<WynncraftGuild>>() {}.getType(), new APIV1GuildStats.APIV1GuildStatsResponseDeserializer())
             .registerTypeAdapter(new TypeToken<APIResponseV1<StatsSearchResult>>() {}.getType(), new APIV1StatsSearch.APIV1StatsSearchResponseDeserializer())
+            .registerTypeAdapter(new TypeToken<APIResponseV1<WynncraftTerritory[]>>() {}.getType(), new APIV1TerritoryList.APIV1TerritoryResponseDeserializer())
             .registerTypeAdapter(new TypeToken<APIResponseV1<OnlinePlayerSum>>() {}.getType(), new APIV1OnlinePlayerSum.APIV1OnlinePlayerSumResponseDeserializer())
             .registerTypeAdapter(new TypeToken<APIResponseV1<WynncraftMapLocation[]>>() {}.getType(), new APIV1MapLocations.APIV1MapLocationsResponseDeserializer())
             .create();
@@ -71,5 +71,9 @@ public class WynncraftAPI {
 
     public static WynncraftAPI getApi() {
         return WynncraftAPI.INSTANCE;
+    }
+
+    public static int getUnixTimestamp() {
+        return (int) (System.currentTimeMillis() / 1000L);
     }
 }
