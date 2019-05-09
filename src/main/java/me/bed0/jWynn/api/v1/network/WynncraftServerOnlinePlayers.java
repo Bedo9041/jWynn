@@ -1,11 +1,11 @@
 package me.bed0.jWynn.api.v1.network;
 
-public class ServerOnlinePlayers {
+public class WynncraftServerOnlinePlayers {
 
     private String server;
     private String[] players;
 
-    public ServerOnlinePlayers(String server, String[] players) {
+    public WynncraftServerOnlinePlayers(String server, String[] players) {
         this.server = server;
         this.players = players;
     }

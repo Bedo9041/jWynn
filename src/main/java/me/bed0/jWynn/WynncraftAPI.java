@@ -12,7 +12,8 @@ import me.bed0.jWynn.api.v1.guild.WynncraftGuild;
 import me.bed0.jWynn.api.v1.item.ItemTier;
 import me.bed0.jWynn.api.v1.item.WynncraftItem;
 import me.bed0.jWynn.api.v1.map.WynncraftMapLocation;
-import me.bed0.jWynn.api.v1.network.OnlinePlayerSum;
+import me.bed0.jWynn.api.v1.network.WynncraftOnlinePlayerSum;
+import me.bed0.jWynn.api.v1.network.WynncraftOnlinePlayers;
 import me.bed0.jWynn.api.v1.search.StatsSearchResult;
 import me.bed0.jWynn.api.v1.territory.WynncraftTerritory;
 import me.bed0.jWynn.api.v2.APIVersion2;
@@ -33,8 +34,9 @@ public class WynncraftAPI {
             .registerTypeAdapter(new TypeToken<APIResponseV1<WynncraftGuild>>() {}.getType(), new APIV1GuildStats.APIV1GuildStatsResponseDeserializer())
             .registerTypeAdapter(new TypeToken<APIResponseV1<StatsSearchResult>>() {}.getType(), new APIV1StatsSearch.APIV1StatsSearchResponseDeserializer())
             .registerTypeAdapter(new TypeToken<APIResponseV1<WynncraftTerritory[]>>() {}.getType(), new APIV1TerritoryList.APIV1TerritoryResponseDeserializer())
-            .registerTypeAdapter(new TypeToken<APIResponseV1<OnlinePlayerSum>>() {}.getType(), new APIV1OnlinePlayerSum.APIV1OnlinePlayerSumResponseDeserializer())
+            .registerTypeAdapter(new TypeToken<APIResponseV1<WynncraftOnlinePlayerSum>>() {}.getType(), new APIV1OnlinePlayerSum.APIV1OnlinePlayerSumResponseDeserializer())
             .registerTypeAdapter(new TypeToken<APIResponseV1<WynncraftMapLocation[]>>() {}.getType(), new APIV1MapLocations.APIV1MapLocationsResponseDeserializer())
+            .registerTypeAdapter(new TypeToken<APIResponseV1<WynncraftOnlinePlayers>>() {}.getType(), new APIV1OnlinePlayers.APIV1OnlinePlayersDeserializer())
             .create();
     public static final String VERSION = "0.1.2";
     private WynncraftAPIConfig config;
