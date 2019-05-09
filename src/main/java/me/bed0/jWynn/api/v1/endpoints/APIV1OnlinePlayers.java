@@ -28,9 +28,7 @@ public class APIV1OnlinePlayers extends APIRequest<WynncraftOnlinePlayers> {
 
     @Override
     public APIResponse<WynncraftOnlinePlayers> runIncludeMeta() {
-        String response = getResponse();
-        System.out.println(response);
-        return GSON.fromJson(response, new TypeToken<APIResponseV1<WynncraftOnlinePlayers>>() {}.getType());
+        return GSON.fromJson(getResponse(), new TypeToken<APIResponseV1<WynncraftOnlinePlayers>>() {}.getType());
     }
 
     public static class APIV1OnlinePlayersDeserializer implements JsonDeserializer<APIResponseV1<WynncraftOnlinePlayers>> {
