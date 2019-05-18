@@ -438,8 +438,20 @@ public class WynncraftItem {
         return identified;
     }
 
+    /**
+     * @return The display as it appears in the API response, returns the
+     * item's name if no display name exists
+     * */
     public String getDisplayName() {
-        return displayName;
+        return displayName == null ? name : displayName;
+    }
+
+    /**
+     * @return true if the item has a display name defined in the API response,
+     * false otherwise
+     * */
+    public boolean hasDefinedDisplayName() {
+        return displayName != null;
     }
 
     public String getSkin() {

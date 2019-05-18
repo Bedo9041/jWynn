@@ -102,6 +102,7 @@ public abstract class APIRequest<T> {
     }
 
     protected String getResponse() {
+        System.out.println(requestURL);
         if (!ignoreRateLimit && midpoint.isRateLimited())
             throw new APIRateLimitExceededException("Cannot execute request " + requestURL + ", rate limit would be exceeded", midpoint.getRateLimitReset(), false);
         RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(timeout).setSocketTimeout(timeout).build();

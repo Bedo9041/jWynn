@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import edu.umd.cs.findbugs.annotations.CheckReturnValue;
+import me.bed0.jWynn.api.common.WynncraftIdentification;
 import me.bed0.jWynn.api.v1.APIResponseV1;
 import me.bed0.jWynn.api.v1.APIVersion1;
 import me.bed0.jWynn.api.v1.endpoints.*;
@@ -17,10 +18,13 @@ import me.bed0.jWynn.api.v1.network.WynncraftOnlinePlayers;
 import me.bed0.jWynn.api.v1.search.StatsSearchResult;
 import me.bed0.jWynn.api.v1.territory.WynncraftTerritory;
 import me.bed0.jWynn.api.v2.APIVersion2;
+import me.bed0.jWynn.api.v2.ingredient.WynncraftIngredient;
+import me.bed0.jWynn.api.v2.ingredient.WynncraftIngredientIdentificationDetails;
 import me.bed0.jWynn.api.v2.player.PlayerRank;
 import me.bed0.jWynn.config.WynncraftAPIConfig;
 
 import java.awt.*;
+import java.util.HashMap;
 
 public class WynncraftAPI {
 
@@ -37,8 +41,9 @@ public class WynncraftAPI {
             .registerTypeAdapter(new TypeToken<APIResponseV1<WynncraftOnlinePlayerSum>>() {}.getType(), new APIV1OnlinePlayerSum.APIV1OnlinePlayerSumResponseDeserializer())
             .registerTypeAdapter(new TypeToken<APIResponseV1<WynncraftMapLocation[]>>() {}.getType(), new APIV1MapLocations.APIV1MapLocationsResponseDeserializer())
             .registerTypeAdapter(new TypeToken<APIResponseV1<WynncraftOnlinePlayers>>() {}.getType(), new APIV1OnlinePlayers.APIV1OnlinePlayersDeserializer())
+            .registerTypeAdapter(new TypeToken<HashMap<WynncraftIdentification, WynncraftIngredientIdentificationDetails>>() {}.getType(), new WynncraftIngredient.WynncraftIngredientIdentificationDeserializer())
             .create();
-    public static final String VERSION = "0.1.2";
+    public static final String VERSION = "0.2.0";
     private WynncraftAPIConfig config;
     private APIVersion1 v1;
     private APIVersion2 v2;
