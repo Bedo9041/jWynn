@@ -10,4 +10,12 @@ public class APIRateLimitExceededException extends APIException {
         this.tryAgainAt = tryAgainAt;
         this.fromRequest = fromRequest;
     }
+
+    public long getTryAgainAt() {
+        return tryAgainAt;
+    }
+
+    public boolean isFromRequest() {
+        return fromRequest;
+    }
 }

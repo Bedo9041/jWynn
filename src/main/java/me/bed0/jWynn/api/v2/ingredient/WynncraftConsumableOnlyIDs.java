@@ -2,19 +2,19 @@ package me.bed0.jWynn.api.v2.ingredient;
 
 public class WynncraftConsumableOnlyIDs {
 
-    private int duration;
-    private int charges;
+    private float duration;
+    private float charges;
 
-    public WynncraftConsumableOnlyIDs(int duration, int charges) {
+    public WynncraftConsumableOnlyIDs(float duration, float charges) {
         this.duration = duration;
         this.charges = charges;
     }
 
-    public int getDuration() {
+    public float getDuration() {
         return duration;
     }
 
-    public int getCharges() {
+    public float getCharges() {
         return charges;
     }
 }

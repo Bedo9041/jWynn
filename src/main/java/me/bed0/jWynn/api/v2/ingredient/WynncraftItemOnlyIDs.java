@@ -2,43 +2,43 @@ package me.bed0.jWynn.api.v2.ingredient;
 
 public class WynncraftItemOnlyIDs {
 
-    private int durabilityModifier;
-    private int strenghtRequirement;
-    private int dexterityRequirement;
-    private int intelligenceRequirement;
-    private int defenceRequirement;
-    private int agilityRequirement;
+    private float durabilityModifier;
+    private float strengthRequirement;
+    private float dexterityRequirement;
+    private float intelligenceRequirement;
+    private float defenceRequirement;
+    private float agilityRequirement;
 
-    public WynncraftItemOnlyIDs(int durabilityModifier, int strenghtRequirement, int dexterityRequirement, int intelligenceRequirement, int defenceRequirement, int agilityRequirement) {
+    public WynncraftItemOnlyIDs(float durabilityModifier, float strengthRequirement, float dexterityRequirement, float intelligenceRequirement, float defenceRequirement, float agilityRequirement) {
         this.durabilityModifier = durabilityModifier;
-        this.strenghtRequirement = strenghtRequirement;
+        this.strengthRequirement = strengthRequirement;
         this.dexterityRequirement = dexterityRequirement;
         this.intelligenceRequirement = intelligenceRequirement;
         this.defenceRequirement = defenceRequirement;
         this.agilityRequirement = agilityRequirement;
     }
 
-    public int getDurabilityModifier() {
+    public float getDurabilityModifier() {
         return durabilityModifier;
     }
 
-    public int getStrenghtRequirement() {
-        return strenghtRequirement;
+    public float getStrengthRequirement() {
+        return strengthRequirement;
     }
 
-    public int getDexterityRequirement() {
+    public float getDexterityRequirement() {
         return dexterityRequirement;
     }
 
-    public int getIntelligenceRequirement() {
+    public float getIntelligenceRequirement() {
         return intelligenceRequirement;
     }
 
-    public int getDefenceRequirement() {
+    public float getDefenceRequirement() {
         return defenceRequirement;
     }
 
-    public int getAgilityRequirement() {
+    public float getAgilityRequirement() {
         return agilityRequirement;
     }
 }

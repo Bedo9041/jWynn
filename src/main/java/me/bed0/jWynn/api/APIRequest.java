@@ -1,10 +1,8 @@
 package me.bed0.jWynn.api;
 
 import edu.umd.cs.findbugs.annotations.CheckReturnValue;
-import me.bed0.jWynn.exceptions.APIConnectionException;
-import me.bed0.jWynn.exceptions.APIRateLimitExceededException;
-import me.bed0.jWynn.exceptions.APIRequestException;
-import me.bed0.jWynn.exceptions.APIResponseException;
+import me.bed0.jWynn.exceptions.*;
+import org.apache.commons.io.FileUtils;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpStatus;
@@ -15,7 +13,9 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,20 +26,22 @@ public abstract class APIRequest<T> {
     private String userAgent;
     private int timeout;
     private boolean ignoreRateLimit;
+    private File fallbackFile;
 
     private APIMidpoint midpoint;
 
     public APIRequest(String requestURL, APIMidpoint midpoint) {
-        this(requestURL, new ArrayList<>(), midpoint.getAPIConfig().getDefaultUserAgent(), midpoint.getAPIConfig().getDefaultConnectionTimeout(), midpoint, false);
+        this(requestURL, new ArrayList<>(), midpoint.getAPIConfig().getDefaultUserAgent(), midpoint.getAPIConfig().getDefaultConnectionTimeout(), midpoint, false, null);
     }
 
-    public APIRequest(String requestURL, List<Header> requestHeaders, String userAgent, int timeout, APIMidpoint midpoint, boolean ignoreRateLimit) {
+    public APIRequest(String requestURL, List<Header> requestHeaders, String userAgent, int timeout, APIMidpoint midpoint, boolean ignoreRateLimit, File fallbackFile) {
         this.requestURL = requestURL;
         this.requestHeaders = requestHeaders;
         this.userAgent = userAgent;
         this.timeout = timeout;
         this.midpoint = midpoint;
         this.ignoreRateLimit = ignoreRateLimit;
+        this.fallbackFile = fallbackFile;
     }
 
     /**
@@ -101,6 +103,16 @@ public abstract class APIRequest<T> {
         return this;
     }
 
+    /**
+     * When this request is run, if it is successful, the response data is saved to the specified file,
+     * if the request fails, attempt to load the request data stored in that file
+     * */
+    @CheckReturnValue
+    public APIRequest<T> fallbackFile(File file) {
+        this.fallbackFile = file;
+        return this;
+    }
+
     protected String getResponse() {
         if (!ignoreRateLimit && midpoint.isRateLimited())
             throw new APIRateLimitExceededException("Cannot execute request " + requestURL + ", rate limit would be exceeded", midpoint.getRateLimitReset(), false);
@@ -132,6 +144,12 @@ public abstract class APIRequest<T> {
                     } else if (returnStr.matches("\\{\"error\":\".*\"}")) {
                         throw new APIResponseException("API error when requesting " + requestURL + ": " + returnStr.split("\"error\":")[1].replace("\"", "").replace("}", ""), -1);
                     }
+                    if (!entity.getContentType().getValue().contains("application/json"))
+                        throw new APIResponseException("Unexpected content type (not application/json): " + entity.getContentType().getValue(), -1);
+                    if (fallbackFile != null && !fallbackFile.isDirectory()) {
+                        fallbackFile.getParentFile().mkdirs();
+                        FileUtils.writeStringToFile(fallbackFile, returnStr, StandardCharsets.UTF_8);
+                    }
                     return returnStr;
                 } else if (status == HttpStatus.SC_BAD_REQUEST) {
                     throw new APIRequestException("400: Bad Request for " + requestURL);
@@ -153,7 +171,23 @@ public abstract class APIRequest<T> {
             };
             return client.execute(httpGet, handler);
         } catch (IOException ex) {
-            throw new APIConnectionException(ex);
+            if (fallbackFile == null) {
+                throw new APIConnectionException(ex);
+            }
+            try {
+                return FileUtils.readFileToString(fallbackFile, StandardCharsets.UTF_8);
+            } catch (IOException ex2) {
+                throw new APIConnectionException(ex);
+            }
+        } catch (APIException ex) {
+            if (fallbackFile == null) {
+                throw ex;
+            }
+            try {
+                return FileUtils.readFileToString(fallbackFile, StandardCharsets.UTF_8);
+            } catch (IOException ex2) {
+                throw ex;
+            }
         }
     }
 }
