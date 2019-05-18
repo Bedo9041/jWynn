@@ -18,7 +18,7 @@ public class APIV2IngredientSearch {
     }
 
     @CheckReturnValue
-    public APIV2IngredientRequest professionOr(WynncraftProfession... professions) {
+    public APIV2IngredientRequest professionsOr(WynncraftProfession... professions) {
         StringBuilder builder = new StringBuilder("v2/ingredient/search/skills/%5E");
         for (WynncraftProfession profession : professions) {
             builder.append(profession).append(",");
@@ -28,7 +28,7 @@ public class APIV2IngredientSearch {
     }
 
     @CheckReturnValue
-    public APIV2IngredientRequest professionAnd(WynncraftProfession... professions) {
+    public APIV2IngredientRequest professionsAnd(WynncraftProfession... professions) {
         StringBuilder builder = new StringBuilder("v2/ingredient/search/skills/&");
         for (WynncraftProfession profession : professions) {
             builder.append(profession).append(",");
@@ -38,7 +38,7 @@ public class APIV2IngredientSearch {
     }
 
     @CheckReturnValue
-    public APIV2IngredientRequest identificationOr(WynncraftIdentification... identifications) {
+    public APIV2IngredientRequest identificationsOr(WynncraftIdentification... identifications) {
         StringBuilder builder = new StringBuilder("v2/ingredient/search/identifications/%5E");
         for (WynncraftIdentification identification : identifications) {
             builder.append(identification).append("%3C;%3E,");
@@ -48,7 +48,7 @@ public class APIV2IngredientSearch {
     }
 
     @CheckReturnValue
-    public APIV2IngredientRequest identificationAnd(WynncraftIdentification... identifications) {
+    public APIV2IngredientRequest identificationsAnd(WynncraftIdentification... identifications) {
         StringBuilder builder = new StringBuilder("v2/ingredient/search/identifications/&");
         for (WynncraftIdentification identification : identifications) {
             builder.append(identification).append("%3C;%3E,");
