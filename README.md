@@ -1,8 +1,8 @@
 jWynn
 ========
 A currently WIP java wrapper for the [Wynncraft](https://wynncraft.com/) [public API](https://docs.wynncraft.com/)
-##Usage
-###Setup
+## Usage
+### Setup
 This wrapper is distributed using [jitpack.io](https://jitpack.io/). This can be done using Maven:
 ```xml
 <repositories>
@@ -33,7 +33,7 @@ dependencies {
 }
 ```
 Where VERSION can be selected from the [releases page](https://github.com/Bedo9041/jWynn/releases).
-###Basic Usage
+### Basic Usage
 Firstly, you should create a new instance of WynncraftAPI, this will be the entry point for all future requests using this wrapper. You can optionally pass in a WynncraftAPIConfig object to configure the default behaviour of the wrapper. The configuration set (or the default configuration, if none is specified) can be override on a request-by-request basis.
 ```java
 WynncraftAPI api = new WynncraftApi();
@@ -54,14 +54,14 @@ System.out.println(guild.getPrefix()); // Imp
 Generally once you have the data object, the fields within said object are fairly self explanatory, however if you do have issues feel free to get in touch with me on discord \_Bedo\_#0160. (Note I have PMs from Wynncraft's main discord disabled due to spam, please join the [Wynncraft API Discord](https://discord.gg/nUFD9xX))
 
 By default the wrapper will handle rate limits automatically, however due to potentially receiving cached data, and the fact requests may be made by multiple sources on the IP, it may not be 100% accurate. I have made the best attempt to deal with these issues, but sometimes it may not work. Due to this you should aim to reduce the amount of requests you make and cache data for as long as relevant to prevent excessive requests.
-###Exceptions
+### Exceptions
 The following exceptions are used when problems occur:
 * APIException is the base class - all other API exceptions extend this and this can be used as a general exception to catch all problems with a request.
 * APIConnectionException is thrown when the wrapper was unable to establish a connection with Wynncraft's API **or** the connection timeout during download. If you have set a custom URL make sure the request is going to the right place; if you are not check whether the API is down, or try increasing the timeout on the request.
 * APIRateLimitExceededException is thrown if a 429 response code is received from the server, or (if rate limit management is enabled) if the wrapper expects that the request you are about to make would exceed the rate limit. You can check which of these it is by calling `.isFromRequest()` and get to see when the request can be retried using `.getTryAgain()` 
 * APIRequestException is thrown if there was a problem with your request, check to see what you are doing wrong (or if there's a bug with the wrapper). You should not continue to make similar requests.
 * APIResponseException is thrown if there was a problem with the data received from the request. Some common causes of this include: an unexpected response code was received from the API; the API didn't specify the correct content-type for the request. When you get this exception you can get the status code returned by the server using `.getStatusCode()`, this will be -1 if an expected status code was returned.
-###Configuration
+### Configuration
 You can configure the wrapper by passing an instance of WynncraftAPIConfig into the constructor of WynncraftAPI. You can currently configure 4 basic variables that are used throughout the wrapper:
 1. The base URL that requests should be made to (default: https://api.wynncraft.com/)
 2. Whether the API should automatically handle rate limits (default: true)
