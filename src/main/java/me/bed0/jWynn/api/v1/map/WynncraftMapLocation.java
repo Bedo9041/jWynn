@@ -28,6 +28,9 @@ public class WynncraftMapLocation {
         return z;
     }
 
+    /**
+     * Get the URL for image of this icon. <b>Once downloaded this image should be cached.</b>
+     */
     public String getIconURL() {
         return "https://map.wynncraft.com/" + icon;
     }

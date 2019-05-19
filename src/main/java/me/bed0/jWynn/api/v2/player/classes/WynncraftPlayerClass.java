@@ -109,4 +109,27 @@ public class WynncraftPlayerClass {
     public boolean isPreEconomyUpdate() {
         return preEconomyUpdate;
     }
+
+    /**
+     * Get the URL of the image representing this class from Wynncraft's CDN.
+     * <b>Once downloaded, this image should be cached.</b>
+     */
+    public String getImageURL() {
+        return "https://cdn.wynncraft.com/img/stats/classes/" + getBaseClass() + ".png";
+    }
+
+    /**
+     * Get the base class for this class, (i.e. this will always be one of the four classes
+     * that are not a cosmetic reskin)
+     */
+    public String getBaseClass() {
+        String replacedName = name.replaceAll("\\d", "");
+        switch (replacedName) {
+            case "darkwizard": return "mage";
+            case "ninja": return "assassin";
+            case "knight": return "warrior";
+            case "hunter": return "archer";
+            default: return replacedName;
+        }
+    }
 }
