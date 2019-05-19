@@ -22,6 +22,6 @@ public class APIV1GuildLeaderboard extends APIRequest<GuildLeaderboardPos[]> {
 
     @Override
     public APIResponse<GuildLeaderboardPos[]> runIncludeMeta() {
-        return GSON.fromJson(getResponse(), new TypeToken<APIResponseV1<GuildLeaderboardPos[]>>(){}.getType());
+        return GSON.fromJson(getResponse(), new TypeToken<APIResponseV1<GuildLeaderboardPos[]>>() {}.getType());
     }
 }

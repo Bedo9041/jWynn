@@ -1,6 +1,5 @@
 package me.bed0.jWynn.api;
 
-import edu.umd.cs.findbugs.annotations.CheckReturnValue;
 import me.bed0.jWynn.exceptions.*;
 import org.apache.commons.io.FileUtils;
 import org.apache.http.Header;
@@ -13,6 +12,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
+import javax.annotation.CheckReturnValue;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -46,18 +46,18 @@ public abstract class APIRequest<T> {
 
     /**
      * Run this request, getting the response data directly (therefore destroying meta data)
-     * */
+     */
     public abstract T run();
 
     /**
      * Run this request, the data returned is wrapped inside a APIResponse object, that also
      * contains the request meta data
-     * */
+     */
     public abstract APIResponse<T> runIncludeMeta();
 
     /**
      * When this request is run, the specified HTTP header will be included with the request
-     * */
+     */
     @CheckReturnValue
     public APIRequest<T> withHeader(Header header) {
         this.requestHeaders.add(header);
@@ -66,7 +66,7 @@ public abstract class APIRequest<T> {
 
     /**
      * When this request is run, it will instead be sent to the specified URL
-     * */
+     */
     @CheckReturnValue
     public APIRequest<T> toURL(String requestURL) {
         this.requestURL = requestURL;
@@ -76,7 +76,7 @@ public abstract class APIRequest<T> {
     /**
      * When this request is run, the user agent the request would normally be made as is
      * replaced with this agent
-     * */
+     */
     @CheckReturnValue
     public APIRequest<T> asAgent(String userAgent) {
         this.userAgent = userAgent;
@@ -86,7 +86,7 @@ public abstract class APIRequest<T> {
     /**
      * When this request is run, instead of timing-out the request with the timeout specified
      * by the API config, instead timeout the request after this amount of time (milliseconds)
-     * */
+     */
     @CheckReturnValue
     public APIRequest<T> withTimeout(int timeout) {
         this.timeout = timeout;
@@ -96,7 +96,7 @@ public abstract class APIRequest<T> {
     /**
      * When this request is run, don't do any rate limit management. The internal rate limits will
      * not be checked and won't be updated after the response is received
-     * */
+     */
     @CheckReturnValue
     public APIRequest<T> ignoreRateLimit() {
         this.ignoreRateLimit = true;
@@ -106,7 +106,7 @@ public abstract class APIRequest<T> {
     /**
      * When this request is run, if it is successful, the response data is saved to the specified file,
      * if the request fails, attempt to load the request data stored in that file
-     * */
+     */
     @CheckReturnValue
     public APIRequest<T> fallbackFile(File file) {
         this.fallbackFile = file;

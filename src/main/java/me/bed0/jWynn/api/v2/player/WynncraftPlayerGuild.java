@@ -1,9 +1,10 @@
 package me.bed0.jWynn.api.v2.player;
 
-import edu.umd.cs.findbugs.annotations.CheckReturnValue;
 import me.bed0.jWynn.WynncraftAPI;
 import me.bed0.jWynn.api.common.GuildRank;
 import me.bed0.jWynn.api.v1.endpoints.APIV1GuildStats;
+
+import javax.annotation.CheckReturnValue;
 
 public class WynncraftPlayerGuild {
 

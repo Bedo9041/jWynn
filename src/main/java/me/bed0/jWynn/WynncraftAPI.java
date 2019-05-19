@@ -3,7 +3,6 @@ package me.bed0.jWynn;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import edu.umd.cs.findbugs.annotations.CheckReturnValue;
 import me.bed0.jWynn.api.common.WynncraftIdentification;
 import me.bed0.jWynn.api.v1.APIResponseV1;
 import me.bed0.jWynn.api.v1.APIVersion1;
@@ -23,6 +22,7 @@ import me.bed0.jWynn.api.v2.ingredient.WynncraftIngredientIdentificationDetails;
 import me.bed0.jWynn.api.v2.player.PlayerRank;
 import me.bed0.jWynn.config.WynncraftAPIConfig;
 
+import javax.annotation.CheckReturnValue;
 import java.awt.*;
 import java.util.HashMap;
 
@@ -44,11 +44,10 @@ public class WynncraftAPI {
             .registerTypeAdapter(new TypeToken<HashMap<WynncraftIdentification, WynncraftIngredientIdentificationDetails>>() {}.getType(), new WynncraftIngredient.WynncraftIngredientIdentificationDeserializer())
             .create();
     public static final String VERSION = "0.2.1";
+    private static WynncraftAPI INSTANCE;
     private WynncraftAPIConfig config;
     private APIVersion1 v1;
     private APIVersion2 v2;
-
-    private static WynncraftAPI INSTANCE;
 
     public WynncraftAPI() {
         this(new WynncraftAPIConfig());
@@ -60,6 +59,14 @@ public class WynncraftAPI {
         this.v2 = new APIVersion2(this);
 
         WynncraftAPI.INSTANCE = this;
+    }
+
+    public static WynncraftAPI getApi() {
+        return WynncraftAPI.INSTANCE;
+    }
+
+    public static int getUnixTimestampSeconds() {
+        return (int) (System.currentTimeMillis() / 1000L);
     }
 
     @CheckReturnValue
@@ -74,13 +81,5 @@ public class WynncraftAPI {
 
     public WynncraftAPIConfig getConfig() {
         return config;
-    }
-
-    public static WynncraftAPI getApi() {
-        return WynncraftAPI.INSTANCE;
-    }
-
-    public static int getUnixTimestamp() {
-        return (int) (System.currentTimeMillis() / 1000L);
     }
 }

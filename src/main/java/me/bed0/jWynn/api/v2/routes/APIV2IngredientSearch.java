@@ -1,11 +1,12 @@
 package me.bed0.jWynn.api.v2.routes;
 
-import edu.umd.cs.findbugs.annotations.CheckReturnValue;
 import me.bed0.jWynn.WynncraftAPI;
 import me.bed0.jWynn.api.APIMidpoint;
 import me.bed0.jWynn.api.common.WynncraftIdentification;
 import me.bed0.jWynn.api.common.WynncraftProfession;
 import me.bed0.jWynn.api.v2.endpoints.APIV2IngredientRequest;
+
+import javax.annotation.CheckReturnValue;
 
 public class APIV2IngredientSearch {
 

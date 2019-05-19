@@ -1,9 +1,10 @@
 package me.bed0.jWynn.api.v2;
 
-import edu.umd.cs.findbugs.annotations.CheckReturnValue;
 import me.bed0.jWynn.WynncraftAPI;
 import me.bed0.jWynn.api.v2.routes.APIV2Ingredient;
 import me.bed0.jWynn.api.v2.routes.APIV2Player;
+
+import javax.annotation.CheckReturnValue;
 
 public class APIVersion2 {
 

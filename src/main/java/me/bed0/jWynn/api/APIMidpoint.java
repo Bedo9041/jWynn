@@ -31,7 +31,7 @@ public abstract class APIMidpoint {
     }
 
     public boolean isRateLimited() {
-        return !getAPIConfig().isHandleRatelimits() || ((rateLimitRemaining <= 0) && rateLimitResetTime > WynncraftAPI.getUnixTimestamp());
+        return !getAPIConfig().isHandleRatelimits() || ((rateLimitRemaining <= 0) && rateLimitResetTime > WynncraftAPI.getUnixTimestampSeconds());
     }
 
     public synchronized void decrementRateLimit() {

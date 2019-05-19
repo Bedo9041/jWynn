@@ -1,9 +1,9 @@
 package me.bed0.jWynn.api.v1.guild;
 
-import edu.umd.cs.findbugs.annotations.CheckReturnValue;
 import me.bed0.jWynn.WynncraftAPI;
 import me.bed0.jWynn.api.v1.endpoints.APIV1GuildStats;
 
+import javax.annotation.CheckReturnValue;
 import java.util.Date;
 
 public class WynncraftGuild {

@@ -1,12 +1,13 @@
 package me.bed0.jWynn.api.v2.player;
 
-import edu.umd.cs.findbugs.annotations.CheckReturnValue;
 import me.bed0.jWynn.WynncraftAPI;
 import me.bed0.jWynn.api.v2.endpoints.APIV2PlayerStats;
 import me.bed0.jWynn.api.v2.player.classes.WynncraftPlayerClass;
 import me.bed0.jWynn.api.v2.player.global.WynncraftPlayerGlobal;
 import me.bed0.jWynn.api.v2.player.meta.WynncraftPlayerMeta;
 import me.bed0.jWynn.api.v2.player.rankings.WynncraftPlayerRanking;
+
+import javax.annotation.CheckReturnValue;
 
 public class WynncraftPlayer {
 
