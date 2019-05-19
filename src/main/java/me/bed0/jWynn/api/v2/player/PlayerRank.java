@@ -5,20 +5,37 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 
+import java.awt.*;
 import java.lang.reflect.Type;
 
 public enum PlayerRank {
 
-    PLAYER,
-    MODERATOR,
-    ADMINISTRATOR,
-    BUILDER,
-    ITEM,
-    GAME_MASTER,
-    CMD,
-    MUSIC,
-    HYBRID,
-    MEDIA;
+    PLAYER("Player", new Color(0, 0, 0)),
+    MODERATOR("Moderator", new Color(249, 199, 0)),
+    ADMINISTRATOR("Administrator", new Color(201, 31, 18)),
+    BUILDER("Builder", new Color(0, 170, 170)),
+    ITEM("Item Team", new Color(0, 170, 170)),
+    GAME_MASTER("Game Master", new Color(0, 170, 170)),
+    CMD("CMD", new Color(0, 170, 170)),
+    MUSIC("Music", new Color(0, 170, 170)),
+    HYBRID("Hybrid", new Color(0, 170, 170)),
+    MEDIA("Media", new Color(64, 0, 212));
+
+    private String friendlyName;
+    private Color color;
+
+    PlayerRank(String friendlyName, Color color) {
+        this.friendlyName = friendlyName;
+        this.color = color;
+    }
+
+    public String getFriendlyName() {
+        return friendlyName;
+    }
+
+    public Color getColor() {
+        return color;
+    }
 
     public static class PlayerRankDeserializer implements JsonDeserializer<PlayerRank> {
         @Override
