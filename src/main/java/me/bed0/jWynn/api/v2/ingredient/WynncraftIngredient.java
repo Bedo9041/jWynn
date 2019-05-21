@@ -18,10 +18,10 @@ public class WynncraftIngredient {
     private WynncraftProfession[] skills;
     private WynncraftIngredientSprite sprite;
     private HashMap<WynncraftIdentification, WynncraftIngredientIdentificationDetails> identifications;
-    private WynncraftItemOnlyIDs itemOnlyIDs;
-    private WynncraftConsumableOnlyIDs consumableOnlyIDs;
+    private WynncraftIngredientItemOnlyIDs itemOnlyIDs;
+    private WynncraftIngredientConsumableOnlyIDs consumableOnlyIDs;
 
-    public WynncraftIngredient(String name, String displayName, int tier, int level, WynncraftProfession[] skills, WynncraftIngredientSprite sprite, HashMap<WynncraftIdentification, WynncraftIngredientIdentificationDetails> identifications, WynncraftItemOnlyIDs itemOnlyIDs, WynncraftConsumableOnlyIDs consumableOnlyIDs) {
+    public WynncraftIngredient(String name, String displayName, int tier, int level, WynncraftProfession[] skills, WynncraftIngredientSprite sprite, HashMap<WynncraftIdentification, WynncraftIngredientIdentificationDetails> identifications, WynncraftIngredientItemOnlyIDs itemOnlyIDs, WynncraftIngredientConsumableOnlyIDs consumableOnlyIDs) {
         this.name = name;
         this.displayName = displayName;
         this.tier = tier;
@@ -65,11 +65,11 @@ public class WynncraftIngredient {
         return identifications;
     }
 
-    public WynncraftItemOnlyIDs getItemOnlyIDs() {
+    public WynncraftIngredientItemOnlyIDs getItemOnlyIDs() {
         return itemOnlyIDs;
     }
 
-    public WynncraftConsumableOnlyIDs getConsumableOnlyIDs() {
+    public WynncraftIngredientConsumableOnlyIDs getConsumableOnlyIDs() {
         return consumableOnlyIDs;
     }
 

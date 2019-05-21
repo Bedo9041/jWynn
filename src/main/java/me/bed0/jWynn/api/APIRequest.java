@@ -21,7 +21,7 @@ import java.util.List;
 
 public abstract class APIRequest<T> {
 
-    private String requestURL;
+    protected String requestURL;
     private List<Header> requestHeaders;
     private String userAgent;
     private int timeout;

@@ -39,4 +39,9 @@ public class APIV2Ingredient extends APIMidpoint {
     public APIV2IngredientSearch search() {
         return search;
     }
+
+    @CheckReturnValue
+    public APIV2IngredientRequest list() {
+        return new APIV2IngredientRequest(api.getConfig().getBaseURL() + "v2/ingredient/list", this);
+    }
 }

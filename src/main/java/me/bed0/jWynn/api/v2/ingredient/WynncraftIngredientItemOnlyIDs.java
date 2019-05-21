@@ -1,6 +1,6 @@
 package me.bed0.jWynn.api.v2.ingredient;
 
-public class WynncraftItemOnlyIDs {
+public class WynncraftIngredientItemOnlyIDs {
 
     private float durabilityModifier;
     private float strengthRequirement;
@@ -9,7 +9,7 @@ public class WynncraftItemOnlyIDs {
     private float defenceRequirement;
     private float agilityRequirement;
 
-    public WynncraftItemOnlyIDs(float durabilityModifier, float strengthRequirement, float dexterityRequirement, float intelligenceRequirement, float defenceRequirement, float agilityRequirement) {
+    public WynncraftIngredientItemOnlyIDs(float durabilityModifier, float strengthRequirement, float dexterityRequirement, float intelligenceRequirement, float defenceRequirement, float agilityRequirement) {
         this.durabilityModifier = durabilityModifier;
         this.strengthRequirement = strengthRequirement;
         this.dexterityRequirement = dexterityRequirement;
