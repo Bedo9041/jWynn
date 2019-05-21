@@ -2,6 +2,7 @@ package me.bed0.jWynn.api.v2.routes;
 
 import me.bed0.jWynn.WynncraftAPI;
 import me.bed0.jWynn.api.APIMidpoint;
+import me.bed0.jWynn.api.v2.endpoints.APIV2IngredientList;
 import me.bed0.jWynn.api.v2.endpoints.APIV2IngredientRequest;
 import me.bed0.jWynn.config.WynncraftAPIConfig;
 import me.bed0.jWynn.exceptions.APIRequestException;
@@ -41,7 +42,7 @@ public class APIV2Ingredient extends APIMidpoint {
     }
 
     @CheckReturnValue
-    public APIV2IngredientRequest list() {
-        return new APIV2IngredientRequest(api.getConfig().getBaseURL() + "v2/ingredient/list", this);
+    public APIV2IngredientList list() {
+        return new APIV2IngredientList(api.getConfig().getBaseURL() + "v2/ingredient/list", this);
     }
 }
