@@ -20,8 +20,9 @@ public class WynncraftIngredient {
     private HashMap<WynncraftIdentification, WynncraftIngredientIdentificationDetails> identifications;
     private WynncraftIngredientItemOnlyIDs itemOnlyIDs;
     private WynncraftIngredientConsumableOnlyIDs consumableOnlyIDs;
+    private WynncraftIngredientPositionModifiers ingredientPositionModifiers;
 
-    public WynncraftIngredient(String name, String displayName, int tier, int level, WynncraftProfession[] skills, WynncraftIngredientSprite sprite, HashMap<WynncraftIdentification, WynncraftIngredientIdentificationDetails> identifications, WynncraftIngredientItemOnlyIDs itemOnlyIDs, WynncraftIngredientConsumableOnlyIDs consumableOnlyIDs) {
+    public WynncraftIngredient(String name, String displayName, int tier, int level, WynncraftProfession[] skills, WynncraftIngredientSprite sprite, HashMap<WynncraftIdentification, WynncraftIngredientIdentificationDetails> identifications, WynncraftIngredientItemOnlyIDs itemOnlyIDs, WynncraftIngredientConsumableOnlyIDs consumableOnlyIDs, WynncraftIngredientPositionModifiers ingredientPositionModifiers) {
         this.name = name;
         this.displayName = displayName;
         this.tier = tier;
@@ -31,6 +32,7 @@ public class WynncraftIngredient {
         this.identifications = identifications;
         this.itemOnlyIDs = itemOnlyIDs;
         this.consumableOnlyIDs = consumableOnlyIDs;
+        this.ingredientPositionModifiers = ingredientPositionModifiers;
     }
 
     public String getName() {
@@ -71,6 +73,10 @@ public class WynncraftIngredient {
 
     public WynncraftIngredientConsumableOnlyIDs getConsumableOnlyIDs() {
         return consumableOnlyIDs;
+    }
+
+    public WynncraftIngredientPositionModifiers getIngredientPositionModifiers() {
+        return ingredientPositionModifiers;
     }
 
     public static class WynncraftIngredientIdentificationDeserializer implements JsonDeserializer<HashMap<WynncraftIdentification, WynncraftIngredientIdentificationDetails>> {

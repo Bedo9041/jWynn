@@ -64,41 +64,87 @@ public class APIV2IngredientSearch {
         return new APIV2IngredientRequest(api.getConfig().getBaseURL() + "v2/ingredient/search/level/" + level, midpoint);
     }
 
+    /**
+     * Unlike other requests, this request acts as a request builder, you add add identifications to the search using
+     * {@link me.bed0.jWynn.api.v2.endpoints.APIV2IngredientIdentificationRequest#withIdentification(WynncraftIdentification, Integer, Integer)}
+     */
     @CheckReturnValue
     public APIV2IngredientIdentificationRequest identificationsOr() {
         return new APIV2IngredientIdentificationRequest(api.getConfig().getBaseURL() + "v2/ingredient/search/identifications/%5E", midpoint);
     }
 
+    /**
+     * Unlike other requests, this request acts as a request builder, you add add identifications to the search using
+     * {@link me.bed0.jWynn.api.v2.endpoints.APIV2IngredientIdentificationRequest#withIdentification(WynncraftIdentification, Integer, Integer)}
+     */
     @CheckReturnValue
     public APIV2IngredientIdentificationRequest identificationsAnd() {
         return new APIV2IngredientIdentificationRequest(api.getConfig().getBaseURL() + "v2/ingredient/search/identifications/&", midpoint);
     }
 
+    /**
+     * Unlike other requests, this request acts as a request builder, you add add sprite details to the search using
+     * {@link me.bed0.jWynn.api.v2.endpoints.APIV2IngredientSpriteRequest#withDamage(int)} and
+     * {@link me.bed0.jWynn.api.v2.endpoints.APIV2IngredientSpriteRequest#withId(int)}
+     */
     @CheckReturnValue
     public APIV2IngredientSpriteRequest spriteOr() {
         return new APIV2IngredientSpriteRequest(api.getConfig().getBaseURL() + "v2/ingredient/search/sprite/%5E", midpoint);
     }
 
+    /**
+     * Unlike other requests, this request acts as a request builder, you add add sprite details to the search using
+     * {@link me.bed0.jWynn.api.v2.endpoints.APIV2IngredientSpriteRequest#withDamage(int)}, and
+     * {@link me.bed0.jWynn.api.v2.endpoints.APIV2IngredientSpriteRequest#withId(int)}
+     */
     @CheckReturnValue
     public APIV2IngredientSpriteRequest spriteAnd() {
         return new APIV2IngredientSpriteRequest(api.getConfig().getBaseURL() + "v2/ingredient/search/sprite/&", midpoint);
     }
 
+    /**
+     * Unlike other requests, this request acts as a request builder, you add add identifications to the search using
+     * {@link me.bed0.jWynn.api.v2.endpoints.APIV2IngredientItemOnlyIDsRequest#withDurability(int)},
+     * {@link me.bed0.jWynn.api.v2.endpoints.APIV2IngredientItemOnlyIDsRequest#withAgility(int)},
+     * {@link me.bed0.jWynn.api.v2.endpoints.APIV2IngredientItemOnlyIDsRequest#withDexterity(int)},
+     * {@link me.bed0.jWynn.api.v2.endpoints.APIV2IngredientItemOnlyIDsRequest#withDefence(int)},
+     * {@link me.bed0.jWynn.api.v2.endpoints.APIV2IngredientItemOnlyIDsRequest#withIntelligence(int)}, and
+     * {@link me.bed0.jWynn.api.v2.endpoints.APIV2IngredientItemOnlyIDsRequest#withStrength(int)}
+     */
     @CheckReturnValue
     public APIV2IngredientItemOnlyIDsRequest itemOnlyIDsOr() {
         return new APIV2IngredientItemOnlyIDsRequest(api.getConfig().getBaseURL() + "v2/ingredient/search/itemOnlyIDs/%5E", midpoint);
     }
 
+    /**
+     * Unlike other requests, this request acts as a request builder, you add add identifications to the search using
+     * {@link me.bed0.jWynn.api.v2.endpoints.APIV2IngredientItemOnlyIDsRequest#withDurability(int)},
+     * {@link me.bed0.jWynn.api.v2.endpoints.APIV2IngredientItemOnlyIDsRequest#withAgility(int)},
+     * {@link me.bed0.jWynn.api.v2.endpoints.APIV2IngredientItemOnlyIDsRequest#withDexterity(int)},
+     * {@link me.bed0.jWynn.api.v2.endpoints.APIV2IngredientItemOnlyIDsRequest#withDefence(int)},
+     * {@link me.bed0.jWynn.api.v2.endpoints.APIV2IngredientItemOnlyIDsRequest#withIntelligence(int)}, and
+     * {@link me.bed0.jWynn.api.v2.endpoints.APIV2IngredientItemOnlyIDsRequest#withStrength(int)}
+     */
     @CheckReturnValue
     public APIV2IngredientItemOnlyIDsRequest itemOnlyIDsAnd() {
         return new APIV2IngredientItemOnlyIDsRequest(api.getConfig().getBaseURL() + "v2/ingredient/search/itemOnlyIDs/&", midpoint);
     }
 
+    /**
+     * Unlike other requests, this request acts as a request builder, you add add identifications to the search using
+     * {@link me.bed0.jWynn.api.v2.endpoints.APIV2IngredientConsumableOnlyIDsRequest#withDuration(int)},
+     * {@link me.bed0.jWynn.api.v2.endpoints.APIV2IngredientConsumableOnlyIDsRequest#withCharges(int)},
+     */
     @CheckReturnValue
     public APIV2IngredientConsumableOnlyIDsRequest consumableOnlyIDsOr() {
         return new APIV2IngredientConsumableOnlyIDsRequest(api.getConfig().getBaseURL() + "v2/ingredient/search/consumableOnlyIDs/%5E", midpoint);
     }
 
+    /**
+     * Unlike other requests, this request acts as a request builder, you add add identifications to the search using
+     * {@link me.bed0.jWynn.api.v2.endpoints.APIV2IngredientConsumableOnlyIDsRequest#withDuration(int)},
+     * {@link me.bed0.jWynn.api.v2.endpoints.APIV2IngredientConsumableOnlyIDsRequest#withCharges(int)},
+     */
     @CheckReturnValue
     public APIV2IngredientConsumableOnlyIDsRequest consumableOnlyIDsAnd() {
         return new APIV2IngredientConsumableOnlyIDsRequest(api.getConfig().getBaseURL() + "v2/ingredient/search/consumableOnlyIDs/&", midpoint);
