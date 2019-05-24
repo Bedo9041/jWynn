@@ -6,19 +6,19 @@ A currently WIP java wrapper for the [Wynncraft](https://wynncraft.com/) [public
 This wrapper is distributed using [jitpack.io](https://jitpack.io/). This can be done using Maven:
 ```xml
 <repositories>
-	<repository>
-	    <id>jitpack.io</id>
-	    <url>https://jitpack.io</url>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
     </repository>
 </repositories>
 ```
 ```xml
 <dependencies>
-    <dependancy>
+    <dependency>
         <groupId>com.github.Bedo9041</groupId>
         <artifactId>jWynn</artifactId>
         <version>VERSION</version>
-    </dependancy>
+    </dependency>
 </dependencies>
 ```
 Using Gradle:
