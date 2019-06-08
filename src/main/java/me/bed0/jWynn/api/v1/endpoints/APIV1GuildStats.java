@@ -23,11 +23,6 @@ public class APIV1GuildStats extends APIRequest<WynncraftGuild> {
     }
 
     @Override
-    public WynncraftGuild run() {
-        return runIncludeMeta().getData();
-    }
-
-    @Override
     public APIResponse<WynncraftGuild> runIncludeMeta() {
         return GSON.fromJson(getResponse(), new TypeToken<APIResponseV1<WynncraftGuild>>() {}.getType());
     }

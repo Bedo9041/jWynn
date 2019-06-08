@@ -16,11 +16,6 @@ public class APIV1GuildLeaderboard extends APIRequest<GuildLeaderboardPos[]> {
     }
 
     @Override
-    public GuildLeaderboardPos[] run() {
-        return runIncludeMeta().getData();
-    }
-
-    @Override
     public APIResponse<GuildLeaderboardPos[]> runIncludeMeta() {
         return GSON.fromJson(getResponse(), new TypeToken<APIResponseV1<GuildLeaderboardPos[]>>() {}.getType());
     }

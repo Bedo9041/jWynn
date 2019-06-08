@@ -23,11 +23,6 @@ public class APIV1GuildList extends APIRequest<GuildList> {
     }
 
     @Override
-    public GuildList run() {
-        return runIncludeMeta().getData();
-    }
-
-    @Override
     public APIResponse<GuildList> runIncludeMeta() {
         return GSON.fromJson(getResponse(), new TypeToken<APIResponseV1<GuildList>>() {}.getType());
     }

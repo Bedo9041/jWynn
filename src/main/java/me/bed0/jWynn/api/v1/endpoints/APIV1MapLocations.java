@@ -23,11 +23,6 @@ public class APIV1MapLocations extends APIRequest<WynncraftMapLocation[]> {
     }
 
     @Override
-    public WynncraftMapLocation[] run() {
-        return runIncludeMeta().getData();
-    }
-
-    @Override
     public APIResponse<WynncraftMapLocation[]> runIncludeMeta() {
         return GSON.fromJson(getResponse(), new TypeToken<APIResponseV1<WynncraftMapLocation[]>>() {}.getType());
     }

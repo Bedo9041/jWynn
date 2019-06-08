@@ -16,12 +16,7 @@ public class APIV2IngredientRequest extends APIRequest<WynncraftIngredient[]> {
     }
 
     @Override
-    public WynncraftIngredient[] run() {
-        return runIncludeMeta().getData();
-    }
-
-    @Override
     public APIResponse<WynncraftIngredient[]> runIncludeMeta() {
-        return GSON.fromJson(getResponse(),  new TypeToken<APIResponseV2<WynncraftIngredient[]>>() {}.getType());
+        return GSON.fromJson(getResponse(), new TypeToken<APIResponseV2<WynncraftIngredient[]>>() {}.getType());
     }
 }

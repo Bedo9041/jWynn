@@ -23,11 +23,6 @@ public class APIV1OnlinePlayerSum extends APIRequest<WynncraftOnlinePlayerSum> {
     }
 
     @Override
-    public WynncraftOnlinePlayerSum run() {
-        return runIncludeMeta().getData();
-    }
-
-    @Override
     public APIResponse<WynncraftOnlinePlayerSum> runIncludeMeta() {
         return GSON.fromJson(getResponse(), new TypeToken<APIResponseV1<WynncraftOnlinePlayerSum>>() {}.getType());
     }

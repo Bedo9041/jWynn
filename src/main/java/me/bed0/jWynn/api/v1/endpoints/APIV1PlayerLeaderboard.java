@@ -16,11 +16,6 @@ public class APIV1PlayerLeaderboard extends APIRequest<PlayerLeaderboardPos[]> {
     }
 
     @Override
-    public PlayerLeaderboardPos[] run() {
-        return runIncludeMeta().getData();
-    }
-
-    @Override
     public APIResponse<PlayerLeaderboardPos[]> runIncludeMeta() {
         return GSON.fromJson(getResponse(), new TypeToken<APIResponseV1<PlayerLeaderboardPos[]>>() {}.getType());
     }

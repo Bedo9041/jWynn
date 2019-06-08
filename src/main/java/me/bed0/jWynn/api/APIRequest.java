@@ -47,7 +47,9 @@ public abstract class APIRequest<T> {
     /**
      * Run this request, getting the response data directly (therefore destroying meta data)
      */
-    public abstract T run();
+    public T run() {
+        return runIncludeMeta().getData();
+    }
 
     /**
      * Run this request, the data returned is wrapped inside a APIResponse object, that also

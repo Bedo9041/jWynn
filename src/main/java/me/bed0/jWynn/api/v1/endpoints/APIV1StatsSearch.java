@@ -23,11 +23,6 @@ public class APIV1StatsSearch extends APIRequest<StatsSearchResult> {
     }
 
     @Override
-    public StatsSearchResult run() {
-        return runIncludeMeta().getData();
-    }
-
-    @Override
     public APIResponse<StatsSearchResult> runIncludeMeta() {
         return GSON.fromJson(getResponse(), new TypeToken<APIResponseV1<StatsSearchResult>>() {}.getType());
     }

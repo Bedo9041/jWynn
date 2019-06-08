@@ -23,11 +23,6 @@ public class APIV1ItemDB extends APIRequest<WynncraftItem[]> {
     }
 
     @Override
-    public WynncraftItem[] run() {
-        return runIncludeMeta().getData();
-    }
-
-    @Override
     public APIResponse<WynncraftItem[]> runIncludeMeta() {
         return GSON.fromJson(getResponse(), new TypeToken<APIResponseV1<WynncraftItem[]>>() {}.getType());
     }

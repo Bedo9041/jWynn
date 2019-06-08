@@ -22,11 +22,6 @@ public class APIV1OnlinePlayers extends APIRequest<WynncraftOnlinePlayers> {
     }
 
     @Override
-    public WynncraftOnlinePlayers run() {
-        return runIncludeMeta().getData();
-    }
-
-    @Override
     public APIResponse<WynncraftOnlinePlayers> runIncludeMeta() {
         return GSON.fromJson(getResponse(), new TypeToken<APIResponseV1<WynncraftOnlinePlayers>>() {}.getType());
     }

@@ -8,14 +8,14 @@ import me.bed0.jWynn.api.v2.APIResponseV2;
 
 import static me.bed0.jWynn.WynncraftAPI.GSON;
 
-public class APIV2IngredientList extends APIRequest<String[]> {
+public class APIV2RecipeList extends APIRequest<String[]> {
 
-    public APIV2IngredientList(String requestURL, APIMidpoint midpoint) {
+    public APIV2RecipeList(String requestURL, APIMidpoint midpoint) {
         super(requestURL, midpoint);
     }
 
     @Override
     public APIResponse<String[]> runIncludeMeta() {
-        return GSON.fromJson(getResponse(),  new TypeToken<APIResponseV2<String[]>>() {}.getType());
+        return GSON.fromJson(getResponse(), new TypeToken<APIResponseV2<String[]>>() {}.getType());
     }
 }

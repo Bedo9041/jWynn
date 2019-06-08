@@ -15,11 +15,6 @@ public class APIV2PlayerStats extends APIRequest<WynncraftPlayer[]> {
     }
 
     @Override
-    public WynncraftPlayer[] run() {
-        return runIncludeMeta().getData();
-    }
-
-    @Override
     public APIResponseV2<WynncraftPlayer[]> runIncludeMeta() {
         return GSON.fromJson(getResponse(), new TypeToken<APIResponseV2<WynncraftPlayer[]>>() {}.getType());
     }

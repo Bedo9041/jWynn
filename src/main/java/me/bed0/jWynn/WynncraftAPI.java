@@ -43,7 +43,7 @@ public class WynncraftAPI {
             .registerTypeAdapter(new TypeToken<APIResponseV1<WynncraftOnlinePlayers>>() {}.getType(), new APIV1OnlinePlayers.APIV1OnlinePlayersDeserializer())
             .registerTypeAdapter(new TypeToken<HashMap<WynncraftIdentification, WynncraftIngredientIdentificationDetails>>() {}.getType(), new WynncraftIngredient.WynncraftIngredientIdentificationDeserializer())
             .create();
-    public static final String VERSION = "0.3.0";
+    public static final String VERSION = "0.4.0";
     private static WynncraftAPI INSTANCE;
     private WynncraftAPIConfig config;
     private APIVersion1 v1;
