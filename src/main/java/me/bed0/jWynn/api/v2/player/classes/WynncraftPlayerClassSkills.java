@@ -5,14 +5,14 @@ public class WynncraftPlayerClassSkills {
     private int strength;
     private int dexterity;
     private int intelligence;
-    private int defense;
+    private int defence;
     private int agility;
 
-    public WynncraftPlayerClassSkills(int strength, int dexterity, int intelligence, int defense, int agility) {
+    public WynncraftPlayerClassSkills(int strength, int dexterity, int intelligence, int defence, int agility) {
         this.strength = strength;
         this.dexterity = dexterity;
         this.intelligence = intelligence;
-        this.defense = defense;
+        this.defence = defence;
         this.agility = agility;
     }
 
@@ -28,8 +28,13 @@ public class WynncraftPlayerClassSkills {
         return intelligence;
     }
 
+    @Deprecated
     public int getDefense() {
-        return defense;
+        return defence;
+    }
+
+    public int getDefence() {
+        return defence;
     }
 
     public int getAgility() {
