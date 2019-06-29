@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 public abstract class APIRequest<T> {
 
@@ -56,6 +57,57 @@ public abstract class APIRequest<T> {
      * contains the request meta data
      */
     public abstract APIResponse<T> runIncludeMeta();
+
+    /**
+     * Run this request, getting the response data directly and passing it to the specified
+     * consumer. If the request fails, the onFailure consumer will be used instead.
+     */
+    public void runAsync(Consumer<T> onSuccess, Consumer<Exception> onFailure) {
+        new Thread(() -> {
+            try {
+                onSuccess.accept(run());
+            } catch (Exception ex) {
+                onFailure.accept(ex);
+            }
+        }).start();
+    }
+
+    /**
+     * Overload for {@link #runAsync(Consumer, Consumer)} that silently ignores failures
+     */
+    public void runAsync(Consumer<T> onSuccess) {
+        new Thread(() -> {
+            try {
+                onSuccess.accept(run());
+            } catch (Exception ignored) {}
+        }).start();
+    }
+
+    /**
+     * Run this request, the data returned is wrapped inside a APIResponse object, that also
+     * contains the request meta data. Pass to the onSuccess consumer if the request was successful,
+     * otherwise the relevant exception will be passed to the onFailure consumer.
+     */
+    public void runIncludeMetaAsync(Consumer<APIResponse<T>> onSuccess, Consumer<Exception> onFailure) {
+        new Thread(() -> {
+            try {
+                onSuccess.accept(runIncludeMeta());
+            } catch (Exception ex) {
+                onFailure.accept(ex);
+            }
+        }).start();
+    }
+
+    /**
+     * Overload for {@link #runIncludeMetaAsync(Consumer, Consumer)} that silently ignores failures
+     */
+    public void runIncludeMetaAsync(Consumer<APIResponse<T>> onSuccess) {
+        new Thread(() -> {
+            try {
+                onSuccess.accept(runIncludeMeta());
+            } catch (Exception ignored) {}
+        }).start();
+    }
 
     /**
      * When this request is run, the specified HTTP header will be included with the request
