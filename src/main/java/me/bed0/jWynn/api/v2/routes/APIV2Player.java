@@ -8,6 +8,7 @@ import me.bed0.jWynn.config.WynncraftAPIConfig;
 import me.bed0.jWynn.exceptions.APIRequestException;
 
 import javax.annotation.CheckReturnValue;
+import java.util.UUID;
 
 public class APIV2Player extends APIMidpoint {
 
@@ -30,6 +31,28 @@ public class APIV2Player extends APIMidpoint {
         if (!playerName.matches("[a-zA-Z0-9_]{1,16}"))
             throw new APIRequestException("The provided username: " + playerName + " is not a valid Minecraft username");
         return new APIV2PlayerStats(api.getConfig().getBaseURL() + "v2/player/" + playerName + "/stats", this);
+    }
+
+    /**
+     * See <a href="https://docs.wynncraft.com/Player-API/#statistics>https://docs.wynncraft.com/Player-API/#statistics</a>
+     */
+    @CheckReturnValue
+    public APIV2PlayerStats statsUUID(UUID uuid) {
+        return new APIV2PlayerStats(api.getConfig().getBaseURL() + "v2/player/" + uuid.toString() + "/stats", this);
+    }
+
+    /**
+     * See <a href="https://docs.wynncraft.com/Player-API/#statistics>https://docs.wynncraft.com/Player-API/#statistics</a>
+     */
+    @CheckReturnValue
+    public APIV2PlayerStats statsUUID(String uuidIn) {
+        String uuid = uuidIn;
+        if (!uuid.matches("[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}")) {
+            if (!uuid.matches("[0-9a-fA-F]{32}"))
+                throw new APIRequestException("The provided UUID: " + uuid + " is not a valid UUID");
+            uuid = new StringBuilder(uuid).insert(20, "-").insert(16, "-").insert(12, "-").insert(8, "-").toString();
+        }
+        return new APIV2PlayerStats(api.getConfig().getBaseURL() + "v2/player/" + uuid + "/stats", this);
     }
 
     /**
