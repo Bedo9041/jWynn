@@ -24,7 +24,7 @@ public class APIV2Player extends APIMidpoint {
     }
 
     /**
-     * See <a href="https://docs.wynncraft.com/Player-API/#statistics>https://docs.wynncraft.com/Player-API/#statistics</a>
+     * See <a href="https://docs.wynncraft.com/Player-API/#statistics">https://docs.wynncraft.com/Player-API/#statistics</a>
      */
     @CheckReturnValue
     public APIV2PlayerStats stats(String playerName) {
@@ -34,7 +34,7 @@ public class APIV2Player extends APIMidpoint {
     }
 
     /**
-     * See <a href="https://docs.wynncraft.com/Player-API/#statistics>https://docs.wynncraft.com/Player-API/#statistics</a>
+     * See <a href="https://docs.wynncraft.com/Player-API/#statistics">https://docs.wynncraft.com/Player-API/#statistics</a>
      */
     @CheckReturnValue
     public APIV2PlayerStats statsUUID(UUID uuid) {
@@ -42,7 +42,7 @@ public class APIV2Player extends APIMidpoint {
     }
 
     /**
-     * See <a href="https://docs.wynncraft.com/Player-API/#statistics>https://docs.wynncraft.com/Player-API/#statistics</a>
+     * See <a href="https://docs.wynncraft.com/Player-API/#statistics">https://docs.wynncraft.com/Player-API/#statistics</a>
      */
     @CheckReturnValue
     public APIV2PlayerStats statsUUID(String uuidIn) {
