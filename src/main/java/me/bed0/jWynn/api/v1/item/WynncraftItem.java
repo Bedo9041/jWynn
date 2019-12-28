@@ -43,6 +43,7 @@ public class WynncraftItem {
     private int manaSteal;
     private int xpBonus;
     private int lootBonus;
+    private int lootQuality;
     private int reflection;
     private int strengthPoints;
     private int dexterityPoints;
@@ -77,13 +78,27 @@ public class WynncraftItem {
     private int thunderDefense;
     private int earthDefense;
     private int health;
+    private int spellCostPct1;
+    private int spellCostPct2;
+    private int spellCostPct3;
+    private int spellCostPct4;
+    private int spellCostRaw1;
+    private int spellCostRaw2;
+    private int spellCostRaw3;
+    private int spellCostRaw4;
+    private int gatherXpBonus;
+    private int gatherSpeed;
+    private int sprint;
+    private int sprintRegen;
+    private int jumpHeight;
+    private MajorID[] majorIds;
     private String accessoryType;
     private String classRequirement;
     private boolean identified = false;
     private String displayName;
     private String skin;
 
-    public WynncraftItem(String name, ItemTier tier, int sockets, Color armorColor, String armorType, String addedLore, String type, String set, String material, String dropType, String restrictions, String damage, String fireDamage, String waterDamage, String airDamage, String thunderDamage, String earthDamage, String attackSpeed, int level, String quest, int strength, int dexterity, int intelligence, int agility, int defense, int healthRegen, int manaRegen, int spellDamage, int damageBonus, int lifeSteal, int manaSteal, int xpBonus, int lootBonus, int reflection, int strengthPoints, int dexterityPoints, int intelligencePoints, int agilityPoints, int defensePoints, int thorns, int exploding, int speed, int attackSpeedBonus, int poison, int healthBonus, int soulPoints, int emeraldStealing, int healthRegenRaw, int spellDamageRaw, int damageBonusRaw, int bonusFireDamage, int bonusWaterDamage, int bonusAirDamage, int bonusThunderDamage, int bonusEarthDamage, int bonusFireDefense, int bonusWaterDefense, int bonusAirDefense, int bonusThunderDefense, int bonusEarthDefense, String category, int fireDefense, int waterDefense, int airDefense, int thunderDefense, int earthDefense, int health, String accessoryType, String classRequirement, boolean identified, String displayName, String skin) {
+    public WynncraftItem(String name, ItemTier tier, int sockets, Color armorColor, String armorType, String addedLore, String type, String set, String material, String dropType, String restrictions, String damage, String fireDamage, String waterDamage, String airDamage, String thunderDamage, String earthDamage, String attackSpeed, int level, String quest, int strength, int dexterity, int intelligence, int agility, int defense, int healthRegen, int manaRegen, int spellDamage, int damageBonus, int lifeSteal, int manaSteal, int xpBonus, int lootBonus, int lootQuality, int reflection, int strengthPoints, int dexterityPoints, int intelligencePoints, int agilityPoints, int defensePoints, int thorns, int exploding, int speed, int attackSpeedBonus, int poison, int healthBonus, int soulPoints, int emeraldStealing, int healthRegenRaw, int spellDamageRaw, int damageBonusRaw, int bonusFireDamage, int bonusWaterDamage, int bonusAirDamage, int bonusThunderDamage, int bonusEarthDamage, int bonusFireDefense, int bonusWaterDefense, int bonusAirDefense, int bonusThunderDefense, int bonusEarthDefense, String category, int fireDefense, int waterDefense, int airDefense, int thunderDefense, int earthDefense, int health, int spellCostPct1, int spellCostPct2, int spellCostPct3, int spellCostPct4, int spellCostRaw1, int spellCostRaw2, int spellCostRaw3, int spellCostRaw4, int gatherXpBonus, int gatherSpeed, int sprint, int sprintRegen, int jumpHeight, MajorID[] majorIds, String accessoryType, String classRequirement, boolean identified, String displayName, String skin) {
         this.name = name;
         this.tier = tier;
         this.sockets = sockets;
@@ -117,6 +132,7 @@ public class WynncraftItem {
         this.manaSteal = manaSteal;
         this.xpBonus = xpBonus;
         this.lootBonus = lootBonus;
+        this.lootQuality = lootQuality;
         this.reflection = reflection;
         this.strengthPoints = strengthPoints;
         this.dexterityPoints = dexterityPoints;
@@ -151,6 +167,20 @@ public class WynncraftItem {
         this.thunderDefense = thunderDefense;
         this.earthDefense = earthDefense;
         this.health = health;
+        this.spellCostPct1 = spellCostPct1;
+        this.spellCostPct2 = spellCostPct2;
+        this.spellCostPct3 = spellCostPct3;
+        this.spellCostPct4 = spellCostPct4;
+        this.spellCostRaw1 = spellCostRaw1;
+        this.spellCostRaw2 = spellCostRaw2;
+        this.spellCostRaw3 = spellCostRaw3;
+        this.spellCostRaw4 = spellCostRaw4;
+        this.gatherXpBonus = gatherXpBonus;
+        this.gatherSpeed = gatherSpeed;
+        this.sprint = sprint;
+        this.sprintRegen = sprintRegen;
+        this.jumpHeight = jumpHeight;
+        this.majorIds = majorIds;
         this.accessoryType = accessoryType;
         this.classRequirement = classRequirement;
         this.identified = identified;
@@ -438,6 +468,66 @@ public class WynncraftItem {
         return identified;
     }
 
+    public int getLootQuality() {
+        return lootQuality;
+    }
+
+    public int getSpellCostPct1() {
+        return spellCostPct1;
+    }
+
+    public int getSpellCostPct2() {
+        return spellCostPct2;
+    }
+
+    public int getSpellCostPct3() {
+        return spellCostPct3;
+    }
+
+    public int getSpellCostPct4() {
+        return spellCostPct4;
+    }
+
+    public int getSpellCostRaw1() {
+        return spellCostRaw1;
+    }
+
+    public int getSpellCostRaw2() {
+        return spellCostRaw2;
+    }
+
+    public int getSpellCostRaw3() {
+        return spellCostRaw3;
+    }
+
+    public int getSpellCostRaw4() {
+        return spellCostRaw4;
+    }
+
+    public int getGatherXpBonus() {
+        return gatherXpBonus;
+    }
+
+    public int getGatherSpeed() {
+        return gatherSpeed;
+    }
+
+    public int getSprint() {
+        return sprint;
+    }
+
+    public int getSprintRegen() {
+        return sprintRegen;
+    }
+
+    public int getJumpHeight() {
+        return jumpHeight;
+    }
+
+    public MajorID[] getMajorIds() {
+        return majorIds;
+    }
+
     /**
      * @return The display as it appears in the API response, returns the
      * item's name if no display name exists
@@ -514,6 +604,9 @@ public class WynncraftItem {
         @Override
         public Color deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
             String color = jsonElement.getAsString();
+            // Special case for "armorColor":0 - needs more investigation
+            if (color.equals("0"))
+                return null;
             String[] splitColor = color.split("[^\\d]");
             int red = Integer.parseInt(splitColor[0]);
             int green = Integer.parseInt(splitColor[1]);

@@ -36,7 +36,9 @@ public enum WynncraftIdentification {
     LOOTBONUS("Loot Bonus", true),
     XPBONUS("XP Bonus", true),
     EMERALDSTEALING("Stealing", true),
-    SOULPOINTS("Soul Point Regen", true);
+    SOULPOINTS("Soul Point Regen", true),
+    LOOT_QUALITY("Loot Quality", true),
+    STAMINA_REGEN("Sprint Regen", true);
 
     private String friendlyName;
     private boolean isPercentage;

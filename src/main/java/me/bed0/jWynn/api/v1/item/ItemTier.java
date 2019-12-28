@@ -14,6 +14,7 @@ public enum ItemTier {
     UNIQUE,
     RARE,
     LEGENDARY,
+    FABLED,
     MYTHIC;
 
     public static class ItemTierDeserializer implements JsonDeserializer<ItemTier> {

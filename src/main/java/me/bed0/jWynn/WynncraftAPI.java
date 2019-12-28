@@ -10,6 +10,7 @@ import me.bed0.jWynn.api.v1.endpoints.*;
 import me.bed0.jWynn.api.v1.guild.GuildList;
 import me.bed0.jWynn.api.v1.guild.WynncraftGuild;
 import me.bed0.jWynn.api.v1.item.ItemTier;
+import me.bed0.jWynn.api.v1.item.MajorID;
 import me.bed0.jWynn.api.v1.item.WynncraftItem;
 import me.bed0.jWynn.api.v1.map.WynncraftMapLocation;
 import me.bed0.jWynn.api.v1.network.WynncraftOnlinePlayerSum;
@@ -30,6 +31,7 @@ public class WynncraftAPI {
 
     public static final Gson GSON = new GsonBuilder()
             .registerTypeAdapter(ItemTier.class, new ItemTier.ItemTierDeserializer())
+            .registerTypeAdapter(MajorID.class, new MajorID.MajorIDDeserializer())
             .registerTypeAdapter(Color.class, new WynncraftItem.ItemColorDeserializer())
             .registerTypeAdapter(PlayerRank.class, new PlayerRank.PlayerRankDeserializer())
             .registerTypeAdapter(WynncraftTerritory[].class, new WynncraftTerritory.WynncraftTerritoryListDeserializer())
@@ -43,7 +45,7 @@ public class WynncraftAPI {
             .registerTypeAdapter(new TypeToken<APIResponseV1<WynncraftOnlinePlayers>>() {}.getType(), new APIV1OnlinePlayers.APIV1OnlinePlayersDeserializer())
             .registerTypeAdapter(new TypeToken<HashMap<WynncraftIdentification, WynncraftIngredientIdentificationDetails>>() {}.getType(), new WynncraftIngredient.WynncraftIngredientIdentificationDeserializer())
             .create();
-    public static final String VERSION = "0.5.1";
+    public static final String VERSION = "0.6.0";
     private static WynncraftAPI INSTANCE;
     private WynncraftAPIConfig config;
     private APIVersion1 v1;
