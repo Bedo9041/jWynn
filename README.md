@@ -36,7 +36,7 @@ Where VERSION can be selected from the [releases page](https://github.com/Bedo90
 ### Basic Usage
 Firstly, you should create a new instance of WynncraftAPI, this will be the entry point for all future requests using this wrapper. You can optionally pass in a WynncraftAPIConfig object to configure the default behaviour of the wrapper. The configuration set (or the default configuration, if none is specified) can be override on a request-by-request basis.
 ```java
-WynncraftAPI api = new WynncraftApi();
+WynncraftAPI api = new WynncraftAPI();
 ```
 Once you have the base objects, requests can be made by following a similar structure to the way a request would be made to the web API. Once you have an APIRequest object, you can configure the request further, or simply run it immediatly. For example if I wanted to get my player stats I would do:
 ```java
