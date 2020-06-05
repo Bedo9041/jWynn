@@ -31,7 +31,7 @@ public class APIVersion1 extends APIMidpoint {
      */
     @CheckReturnValue
     public APIV1TerritoryList territoryList() {
-        return new APIV1TerritoryList(api.getConfig().getBaseURLLegacy() + "public_api.php?action=territoryList", this);
+        return new APIV1TerritoryList(api.getConfig().getBaseURL() + "public_api.php?action=territoryList", this);
     }
 
     /**
@@ -39,7 +39,7 @@ public class APIVersion1 extends APIMidpoint {
      */
     @CheckReturnValue
     public APIV1GuildList guildList() {
-        return new APIV1GuildList(api.getConfig().getBaseURLLegacy() + "public_api.php?action=guildList", this);
+        return new APIV1GuildList(api.getConfig().getBaseURL() + "public_api.php?action=guildList", this);
     }
 
     /**
@@ -48,7 +48,7 @@ public class APIVersion1 extends APIMidpoint {
     @CheckReturnValue
     public APIV1GuildStats guildStats(String guildName) {
         try {
-            return new APIV1GuildStats(api.getConfig().getBaseURLLegacy() + "public_api.php?action=guildStats&command=" + URLEncoder.encode(guildName, "UTF-8"), this);
+            return new APIV1GuildStats(api.getConfig().getBaseURL() + "public_api.php?action=guildStats&command=" + URLEncoder.encode(guildName, "UTF-8"), this);
         } catch (UnsupportedEncodingException ex) {
             throw new APIRequestException(ex);
         }
@@ -59,7 +59,7 @@ public class APIVersion1 extends APIMidpoint {
      */
     @CheckReturnValue
     public APIV1ItemDB itemDBByCategory(ItemCategory category) {
-        return new APIV1ItemDB(api.getConfig().getBaseURLLegacy() + "public_api.php?action=itemDB&category=" + category.toString().toLowerCase(), this);
+        return new APIV1ItemDB(api.getConfig().getBaseURL() + "public_api.php?action=itemDB&category=" + category.toString().toLowerCase(), this);
     }
 
     /**
@@ -68,7 +68,7 @@ public class APIVersion1 extends APIMidpoint {
     @CheckReturnValue
     public APIV1ItemDB itemDBSearch(String search) {
         try {
-            return new APIV1ItemDB(api.getConfig().getBaseURLLegacy() + "public_api.php?action=itemDB&search=" + URLEncoder.encode(search, "UTF-8"), this);
+            return new APIV1ItemDB(api.getConfig().getBaseURL() + "public_api.php?action=itemDB&search=" + URLEncoder.encode(search, "UTF-8"), this);
         } catch (UnsupportedEncodingException ex) {
             throw new APIRequestException(ex);
         }
@@ -83,7 +83,7 @@ public class APIVersion1 extends APIMidpoint {
     @Deprecated
     public APIV1StatsSearch statsSearch(String search) {
         try {
-            return new APIV1StatsSearch(api.getConfig().getBaseURLLegacy() + "public_api.php?action=statsSearch&search=" + URLEncoder.encode(search, "UTF-8"), this);
+            return new APIV1StatsSearch(api.getConfig().getBaseURL() + "public_api.php?action=statsSearch&search=" + URLEncoder.encode(search, "UTF-8"), this);
         } catch (UnsupportedEncodingException ex) {
             throw new APIRequestException(ex);
         }
@@ -94,7 +94,7 @@ public class APIVersion1 extends APIMidpoint {
      */
     @CheckReturnValue
     public APIV1OnlinePlayerSum onlinePlayerSum() {
-        return new APIV1OnlinePlayerSum(api.getConfig().getBaseURLLegacy() + "public_api.php?action=onlinePlayersSum", this);
+        return new APIV1OnlinePlayerSum(api.getConfig().getBaseURL() + "public_api.php?action=onlinePlayersSum", this);
     }
 
     /**
@@ -102,7 +102,7 @@ public class APIVersion1 extends APIMidpoint {
      */
     @CheckReturnValue
     public APIV1OnlinePlayers onlinePlayers() {
-        return new APIV1OnlinePlayers(api.getConfig().getBaseURLLegacy() + "public_api.php?action=onlinePlayers", this);
+        return new APIV1OnlinePlayers(api.getConfig().getBaseURL() + "public_api.php?action=onlinePlayers", this);
     }
 
     /**
@@ -110,7 +110,7 @@ public class APIVersion1 extends APIMidpoint {
      */
     @CheckReturnValue
     public APIV1GuildLeaderboard guildLeaderboard() {
-        return new APIV1GuildLeaderboard(api.getConfig().getBaseURLLegacy() + "public_api.php?action=statsLeaderboard&type=guild&timeframe=alltime", this);
+        return new APIV1GuildLeaderboard(api.getConfig().getBaseURL() + "public_api.php?action=statsLeaderboard&type=guild&timeframe=alltime", this);
     }
 
     /**
@@ -118,7 +118,7 @@ public class APIVersion1 extends APIMidpoint {
      */
     @CheckReturnValue
     public APIV1PlayerLeaderboard playerLeaderboard() {
-        return new APIV1PlayerLeaderboard(api.getConfig().getBaseURLLegacy() + "public_api.php?action=statsLeaderboard&type=player&timeframe=alltime", this);
+        return new APIV1PlayerLeaderboard(api.getConfig().getBaseURL() + "public_api.php?action=statsLeaderboard&type=player&timeframe=alltime", this);
     }
 
     /**
@@ -126,7 +126,7 @@ public class APIVersion1 extends APIMidpoint {
      */
     @CheckReturnValue
     public APIV1PlayerLeaderboard pvpLeaderboard(LeaderboardTimeframe timeframe) {
-        return new APIV1PlayerLeaderboard(api.getConfig().getBaseURLLegacy() + "public_api.php?action=statsLeaderboard&type=pvp&timeframe=" + timeframe.toString().toLowerCase(), this);
+        return new APIV1PlayerLeaderboard(api.getConfig().getBaseURL() + "public_api.php?action=statsLeaderboard&type=pvp&timeframe=" + timeframe.toString().toLowerCase(), this);
     }
 
     /**
@@ -137,6 +137,6 @@ public class APIVersion1 extends APIMidpoint {
     @CheckReturnValue
     @Deprecated
     public APIV1MapLocations mapLocations() {
-        return new APIV1MapLocations(api.getConfig().getBaseURLLegacy() + "public_api.php?action=mapLocations", this);
+        return new APIV1MapLocations(api.getConfig().getBaseURL() + "public_api.php?action=mapLocations", this);
     }
 }
