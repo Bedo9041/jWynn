@@ -3,6 +3,7 @@ package me.bed0.jWynn;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import me.bed0.jWynn.api.APIMidpoint;
 import me.bed0.jWynn.api.common.WynncraftIdentification;
 import me.bed0.jWynn.api.v1.APIResponseV1;
 import me.bed0.jWynn.api.v1.APIVersion1;
@@ -27,7 +28,7 @@ import javax.annotation.CheckReturnValue;
 import java.awt.*;
 import java.util.HashMap;
 
-public class WynncraftAPI {
+public class WynncraftAPI extends APIMidpoint {
 
     public static final Gson GSON = new GsonBuilder()
             .registerTypeAdapter(ItemTier.class, new ItemTier.ItemTierDeserializer())
@@ -55,6 +56,10 @@ public class WynncraftAPI {
         this(new WynncraftAPIConfig());
     }
 
+    public WynncraftAPI(String apiKey) {
+        this(new WynncraftAPIConfig(apiKey));
+    }
+
     public WynncraftAPI(WynncraftAPIConfig config) {
         this.config = config;
         this.v1 = new APIVersion1(this);
@@ -67,6 +72,7 @@ public class WynncraftAPI {
         return WynncraftAPI.INSTANCE;
     }
 
+    @Deprecated
     public static int getUnixTimestampSeconds() {
         return (int) (System.currentTimeMillis() / 1000L);
     }
@@ -82,6 +88,11 @@ public class WynncraftAPI {
     }
 
     public WynncraftAPIConfig getConfig() {
+        return config;
+    }
+
+    @Override
+    public WynncraftAPIConfig getAPIConfig() {
         return config;
     }
 }

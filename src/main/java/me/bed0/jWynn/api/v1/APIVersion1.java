@@ -12,18 +12,12 @@ import javax.annotation.CheckReturnValue;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-public class APIVersion1 extends APIMidpoint {
+public class APIVersion1 {
 
     private WynncraftAPI api;
 
     public APIVersion1(WynncraftAPI api) {
-        v2 = false;
         this.api = api;
-    }
-
-    @Override
-    public WynncraftAPIConfig getAPIConfig() {
-        return api.getConfig();
     }
 
     /**
@@ -31,7 +25,7 @@ public class APIVersion1 extends APIMidpoint {
      */
     @CheckReturnValue
     public APIV1TerritoryList territoryList() {
-        return new APIV1TerritoryList(api.getConfig().getBaseURL() + "public_api.php?action=territoryList", this);
+        return new APIV1TerritoryList(api.getConfig().getBaseURL() + "public_api.php?action=territoryList", api);
     }
 
     /**
@@ -39,7 +33,7 @@ public class APIVersion1 extends APIMidpoint {
      */
     @CheckReturnValue
     public APIV1GuildList guildList() {
-        return new APIV1GuildList(api.getConfig().getBaseURL() + "public_api.php?action=guildList", this);
+        return new APIV1GuildList(api.getConfig().getBaseURL() + "public_api.php?action=guildList", api);
     }
 
     /**
@@ -48,7 +42,7 @@ public class APIVersion1 extends APIMidpoint {
     @CheckReturnValue
     public APIV1GuildStats guildStats(String guildName) {
         try {
-            return new APIV1GuildStats(api.getConfig().getBaseURL() + "public_api.php?action=guildStats&command=" + URLEncoder.encode(guildName, "UTF-8"), this);
+            return new APIV1GuildStats(api.getConfig().getBaseURL() + "public_api.php?action=guildStats&command=" + URLEncoder.encode(guildName, "UTF-8"), api);
         } catch (UnsupportedEncodingException ex) {
             throw new APIRequestException(ex);
         }
@@ -59,7 +53,7 @@ public class APIVersion1 extends APIMidpoint {
      */
     @CheckReturnValue
     public APIV1ItemDB itemDBByCategory(ItemCategory category) {
-        return new APIV1ItemDB(api.getConfig().getBaseURL() + "public_api.php?action=itemDB&category=" + category.toString().toLowerCase(), this);
+        return new APIV1ItemDB(api.getConfig().getBaseURL() + "public_api.php?action=itemDB&category=" + category.toString().toLowerCase(), api);
     }
 
     /**
@@ -68,7 +62,7 @@ public class APIVersion1 extends APIMidpoint {
     @CheckReturnValue
     public APIV1ItemDB itemDBSearch(String search) {
         try {
-            return new APIV1ItemDB(api.getConfig().getBaseURL() + "public_api.php?action=itemDB&search=" + URLEncoder.encode(search, "UTF-8"), this);
+            return new APIV1ItemDB(api.getConfig().getBaseURL() + "public_api.php?action=itemDB&search=" + URLEncoder.encode(search, "UTF-8"), api);
         } catch (UnsupportedEncodingException ex) {
             throw new APIRequestException(ex);
         }
@@ -77,13 +71,13 @@ public class APIVersion1 extends APIMidpoint {
     /**
      * See <a href="https://docs.wynncraft.com/Search-API/#name">https://docs.wynncraft.com/Search-API/#name</a>
      *
-     * Note: this API is current disabled
+     * Note: api API is current disabled
      */
     @CheckReturnValue
     @Deprecated
     public APIV1StatsSearch statsSearch(String search) {
         try {
-            return new APIV1StatsSearch(api.getConfig().getBaseURL() + "public_api.php?action=statsSearch&search=" + URLEncoder.encode(search, "UTF-8"), this);
+            return new APIV1StatsSearch(api.getConfig().getBaseURL() + "public_api.php?action=statsSearch&search=" + URLEncoder.encode(search, "UTF-8"), api);
         } catch (UnsupportedEncodingException ex) {
             throw new APIRequestException(ex);
         }
@@ -94,7 +88,7 @@ public class APIVersion1 extends APIMidpoint {
      */
     @CheckReturnValue
     public APIV1OnlinePlayerSum onlinePlayerSum() {
-        return new APIV1OnlinePlayerSum(api.getConfig().getBaseURL() + "public_api.php?action=onlinePlayersSum", this);
+        return new APIV1OnlinePlayerSum(api.getConfig().getBaseURL() + "public_api.php?action=onlinePlayersSum", api);
     }
 
     /**
@@ -102,7 +96,7 @@ public class APIVersion1 extends APIMidpoint {
      */
     @CheckReturnValue
     public APIV1OnlinePlayers onlinePlayers() {
-        return new APIV1OnlinePlayers(api.getConfig().getBaseURL() + "public_api.php?action=onlinePlayers", this);
+        return new APIV1OnlinePlayers(api.getConfig().getBaseURL() + "public_api.php?action=onlinePlayers", api);
     }
 
     /**
@@ -110,7 +104,7 @@ public class APIVersion1 extends APIMidpoint {
      */
     @CheckReturnValue
     public APIV1GuildLeaderboard guildLeaderboard() {
-        return new APIV1GuildLeaderboard(api.getConfig().getBaseURL() + "public_api.php?action=statsLeaderboard&type=guild&timeframe=alltime", this);
+        return new APIV1GuildLeaderboard(api.getConfig().getBaseURL() + "public_api.php?action=statsLeaderboard&type=guild&timeframe=alltime", api);
     }
 
     /**
@@ -118,7 +112,7 @@ public class APIVersion1 extends APIMidpoint {
      */
     @CheckReturnValue
     public APIV1PlayerLeaderboard playerLeaderboard() {
-        return new APIV1PlayerLeaderboard(api.getConfig().getBaseURL() + "public_api.php?action=statsLeaderboard&type=player&timeframe=alltime", this);
+        return new APIV1PlayerLeaderboard(api.getConfig().getBaseURL() + "public_api.php?action=statsLeaderboard&type=player&timeframe=alltime", api);
     }
 
     /**
@@ -126,7 +120,7 @@ public class APIVersion1 extends APIMidpoint {
      */
     @CheckReturnValue
     public APIV1PlayerLeaderboard pvpLeaderboard(LeaderboardTimeframe timeframe) {
-        return new APIV1PlayerLeaderboard(api.getConfig().getBaseURL() + "public_api.php?action=statsLeaderboard&type=pvp&timeframe=" + timeframe.toString().toLowerCase(), this);
+        return new APIV1PlayerLeaderboard(api.getConfig().getBaseURL() + "public_api.php?action=statsLeaderboard&type=pvp&timeframe=" + timeframe.toString().toLowerCase(), api);
     }
 
     /**
@@ -137,6 +131,6 @@ public class APIVersion1 extends APIMidpoint {
     @CheckReturnValue
     @Deprecated
     public APIV1MapLocations mapLocations() {
-        return new APIV1MapLocations(api.getConfig().getBaseURL() + "public_api.php?action=mapLocations", this);
+        return new APIV1MapLocations(api.getConfig().getBaseURL() + "public_api.php?action=mapLocations", api);
     }
 }

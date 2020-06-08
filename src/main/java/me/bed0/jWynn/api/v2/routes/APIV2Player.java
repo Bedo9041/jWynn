@@ -10,17 +10,12 @@ import me.bed0.jWynn.exceptions.APIRequestException;
 import javax.annotation.CheckReturnValue;
 import java.util.UUID;
 
-public class APIV2Player extends APIMidpoint {
+public class APIV2Player {
 
     private WynncraftAPI api;
 
     public APIV2Player(WynncraftAPI api) {
         this.api = api;
-    }
-
-    @Override
-    public WynncraftAPIConfig getAPIConfig() {
-        return api.getConfig();
     }
 
     /**
@@ -30,7 +25,7 @@ public class APIV2Player extends APIMidpoint {
     public APIV2PlayerStats stats(String playerName) {
         if (!playerName.matches("[a-zA-Z0-9_]{1,16}"))
             throw new APIRequestException("The provided username: " + playerName + " is not a valid Minecraft username");
-        return new APIV2PlayerStats(api.getConfig().getBaseURL() + "v2/player/" + playerName + "/stats", this);
+        return new APIV2PlayerStats(api.getConfig().getBaseURL() + "v2/player/" + playerName + "/stats", api);
     }
 
     /**
@@ -38,7 +33,7 @@ public class APIV2Player extends APIMidpoint {
      */
     @CheckReturnValue
     public APIV2PlayerStats statsUUID(UUID uuid) {
-        return new APIV2PlayerStats(api.getConfig().getBaseURL() + "v2/player/" + uuid.toString() + "/stats", this);
+        return new APIV2PlayerStats(api.getConfig().getBaseURL() + "v2/player/" + uuid.toString() + "/stats", api);
     }
 
     /**
@@ -52,7 +47,7 @@ public class APIV2Player extends APIMidpoint {
                 throw new APIRequestException("The provided UUID: " + uuid + " is not a valid UUID");
             uuid = new StringBuilder(uuid).insert(20, "-").insert(16, "-").insert(12, "-").insert(8, "-").toString();
         }
-        return new APIV2PlayerStats(api.getConfig().getBaseURL() + "v2/player/" + uuid + "/stats", this);
+        return new APIV2PlayerStats(api.getConfig().getBaseURL() + "v2/player/" + uuid + "/stats", api);
     }
 
     /**
@@ -65,6 +60,6 @@ public class APIV2Player extends APIMidpoint {
     public APIV2PlayerUUID uuid(String playerName) {
         if (!playerName.matches("[a-zA-Z0-9_]{1,16}"))
             throw new APIRequestException("The provided username: " + playerName + " is not a valid Minecraft username");
-        return new APIV2PlayerUUID(api.getConfig().getBaseURL() + "v2/player/" + playerName + "/uuid", this);
+        return new APIV2PlayerUUID(api.getConfig().getBaseURL() + "v2/player/" + playerName + "/uuid", api);
     }
 }

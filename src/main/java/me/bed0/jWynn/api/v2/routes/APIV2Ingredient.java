@@ -11,7 +11,7 @@ import javax.annotation.CheckReturnValue;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-public class APIV2Ingredient extends APIMidpoint {
+public class APIV2Ingredient {
 
     private WynncraftAPI api;
 
@@ -19,18 +19,13 @@ public class APIV2Ingredient extends APIMidpoint {
 
     public APIV2Ingredient(WynncraftAPI api) {
         this.api = api;
-        this.search = new APIV2IngredientSearch(this, api);
-    }
-
-    @Override
-    public WynncraftAPIConfig getAPIConfig() {
-        return api.getConfig();
+        this.search = new APIV2IngredientSearch(api);
     }
 
     @CheckReturnValue
     public APIV2IngredientRequest get(String ingredient) {
         try {
-            return new APIV2IngredientRequest(api.getConfig().getBaseURL() + "v2/ingredient/get/" + URLEncoder.encode(ingredient.replace(' ', '_'), "UTF-8"), this);
+            return new APIV2IngredientRequest(api.getConfig().getBaseURL() + "v2/ingredient/get/" + URLEncoder.encode(ingredient.replace(' ', '_'), "UTF-8"), api);
         } catch (UnsupportedEncodingException ex) {
             throw new APIRequestException(ex);
         }
@@ -43,6 +38,6 @@ public class APIV2Ingredient extends APIMidpoint {
 
     @CheckReturnValue
     public APIV2IngredientList list() {
-        return new APIV2IngredientList(api.getConfig().getBaseURL() + "v2/ingredient/list", this);
+        return new APIV2IngredientList(api.getConfig().getBaseURL() + "v2/ingredient/list", api);
     }
 }

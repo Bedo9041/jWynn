@@ -168,20 +168,25 @@ public abstract class APIRequest<T> {
     }
 
     protected String getResponse() {
-        if (!ignoreRateLimit && midpoint.isRateLimited())
+        if (!ignoreRateLimit && midpoint.isRateLimited()) {
             throw new APIRateLimitExceededException("Cannot execute request " + requestURL + ", rate limit would be exceeded", midpoint.getRateLimitReset(), false);
+        }
         RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(timeout).setSocketTimeout(timeout).build();
         try (CloseableHttpClient client = HttpClients.custom().setDefaultRequestConfig(requestConfig).build()) {
             HttpGet httpGet = new HttpGet(requestURL);
             Header[] requestHeaders = new Header[this.requestHeaders.size()];
             httpGet.setHeaders(this.requestHeaders.toArray(requestHeaders));
             httpGet.setHeader("user-agent", userAgent);
+            if (midpoint.getAPIConfig().hasApiKey()) {
+                httpGet.setHeader("apikey", midpoint.getAPIConfig().getApiKey());
+            }
             ResponseHandler<String> handler = httpResponse -> {
                 if (midpoint.getAPIConfig().isHandleRatelimits()) {
                     try {
-                        long rateLimitReset = Long.parseLong(httpResponse.getFirstHeader("x-ratelimit-reset").getValue());
-                        int rateLimitMax = Integer.parseInt(httpResponse.getFirstHeader("x-ratelimit-limit").getValue());
-                        int rateLimitRemaining = Integer.parseInt(httpResponse.getFirstHeader("x-ratelimit-remaining").getValue());
+                        // TODO: Multiple rate limit headers now being returned?
+                        long rateLimitReset = Long.parseLong(httpResponse.getFirstHeader("ratelimit-reset").getValue()) * 1000 + System.currentTimeMillis();
+                        int rateLimitMax = Integer.parseInt(httpResponse.getFirstHeader("ratelimit-limit").getValue());
+                        int rateLimitRemaining = Integer.parseInt(httpResponse.getFirstHeader("ratelimit-remaining").getValue());
                         midpoint.updateRateLimit(rateLimitReset, rateLimitRemaining, rateLimitMax);
                     } catch (NumberFormatException | NullPointerException ignored) {
                         midpoint.decrementRateLimit();
@@ -210,7 +215,7 @@ public abstract class APIRequest<T> {
                 } else if (status == 429 /* Too Many Requests */) {
                     long resetTime;
                     try {
-                        resetTime = Long.parseLong(httpResponse.getFirstHeader("x-ratelimit-reset").getValue());
+                        resetTime = Long.parseLong(httpResponse.getFirstHeader("ratelimit-reset").getValue()) * 1000 + System.currentTimeMillis();
                     } catch (NumberFormatException ex) {
                         resetTime = -1;
                     }

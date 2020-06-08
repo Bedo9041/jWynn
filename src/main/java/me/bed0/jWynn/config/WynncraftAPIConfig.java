@@ -9,17 +9,26 @@ public class WynncraftAPIConfig {
     private boolean handleRatelimits;
     private String defaultUserAgent;
     private int defaultConnectionTimeout;
+    private String apiKey;
 
     public WynncraftAPIConfig() {
         this("https://api.wynncraft.com/", true, "jWynn/v" + WynncraftAPI.VERSION, 10000);
     }
 
+    public WynncraftAPIConfig(String apiKey) {
+        this("https://api.wynncraft.com/", true, "jWynn/v" + WynncraftAPI.VERSION, 10000, apiKey);
+    }
+
     public WynncraftAPIConfig(String baseURL, boolean handleRatelimits, String defaultUserAgent, int defaultConnectionTimeout) {
+        this(baseURL, handleRatelimits, defaultUserAgent, defaultConnectionTimeout, null);
+    }
+
+    public WynncraftAPIConfig(String baseURL, boolean handleRatelimits, String defaultUserAgent, int defaultConnectionTimeout, String apiKey) {
         this.baseURL = baseURL;
-        this.baseURLLegacy = baseURL;
         this.handleRatelimits = handleRatelimits;
         this.defaultUserAgent = defaultUserAgent;
         this.defaultConnectionTimeout = defaultConnectionTimeout;
+        this.apiKey = apiKey;
     }
 
     /**
@@ -27,7 +36,7 @@ public class WynncraftAPIConfig {
      */
     @Deprecated
     public WynncraftAPIConfig(String baseURL, String baseURLLegacy, boolean handleRatelimits, String defaultUserAgent, int defaultConnectionTimeout) {
-        this(baseURL, handleRatelimits, defaultUserAgent, defaultConnectionTimeout);
+        this(baseURL, handleRatelimits, defaultUserAgent, defaultConnectionTimeout, null);
         this.baseURLLegacy = baseURLLegacy;
     }
 
@@ -45,6 +54,14 @@ public class WynncraftAPIConfig {
 
     public boolean isHandleRatelimits() {
         return handleRatelimits;
+    }
+
+    public String getApiKey() {
+        return apiKey;
+    }
+
+    public boolean hasApiKey() {
+        return apiKey != null;
     }
 
     public String getDefaultUserAgent() {

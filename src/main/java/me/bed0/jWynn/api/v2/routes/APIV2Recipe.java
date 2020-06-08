@@ -19,7 +19,7 @@ public class APIV2Recipe extends APIMidpoint {
 
     public APIV2Recipe(WynncraftAPI api) {
         this.api = api;
-        this.search = new APIV2RecipeSearch(this, api);
+        this.search = new APIV2RecipeSearch(api);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class APIV2Recipe extends APIMidpoint {
     @CheckReturnValue
     public APIV2RecipeRequest get(String recipe) {
         try {
-            return new APIV2RecipeRequest(api.getConfig().getBaseURL() + "v2/recipe/get/" + URLEncoder.encode(recipe.replace(' ', '_'), "UTF-8"), this);
+            return new APIV2RecipeRequest(api.getConfig().getBaseURL() + "v2/recipe/get/" + URLEncoder.encode(recipe.replace(' ', '_'), "UTF-8"), api);
         } catch (UnsupportedEncodingException ex) {
             throw new APIRequestException(ex);
         }
@@ -38,7 +38,7 @@ public class APIV2Recipe extends APIMidpoint {
 
     @CheckReturnValue
     public APIV2RecipeList list() {
-        return new APIV2RecipeList("v2/recipe/list", this);
+        return new APIV2RecipeList(api.getConfig().getBaseURL() + "v2/recipe/list", api);
     }
 
     @CheckReturnValue
