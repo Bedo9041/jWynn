@@ -19,7 +19,9 @@ public enum PlayerRank {
     CMD("CMD", new Color(0, 170, 170)),
     MUSIC("Music", new Color(0, 170, 170)),
     HYBRID("Hybrid", new Color(0, 170, 170)),
-    MEDIA("Media", new Color(64, 0, 212));
+    MEDIA("Media", new Color(64, 0, 212)),
+    ART("Art", new Color(0, 170, 170)),
+    OTHER("Other", new Color(0, 0, 0));
 
     private String friendlyName;
     private Color color;
@@ -40,7 +42,11 @@ public enum PlayerRank {
     public static class PlayerRankDeserializer implements JsonDeserializer<PlayerRank> {
         @Override
         public PlayerRank deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
-            return PlayerRank.valueOf(jsonElement.getAsString().replace(" ", "_").toUpperCase());
+            try {
+                return PlayerRank.valueOf(jsonElement.getAsString().replace(" ", "_").toUpperCase());
+            } catch (IllegalArgumentException ex) {
+                return PlayerRank.OTHER;
+            }
         }
     }
 }
