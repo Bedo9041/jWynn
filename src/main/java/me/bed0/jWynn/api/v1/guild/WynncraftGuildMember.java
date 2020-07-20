@@ -45,6 +45,6 @@ public class WynncraftGuildMember {
 
     @CheckReturnValue
     public APIV2PlayerStats getDetailsRequest() {
-        return WynncraftAPI.getApi().v2().player().stats(name);
+        return WynncraftAPI.getApi().v2().player().stats(uuid);
     }
 }
