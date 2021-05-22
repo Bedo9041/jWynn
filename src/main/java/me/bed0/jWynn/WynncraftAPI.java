@@ -23,9 +23,11 @@ import me.bed0.jWynn.api.v2.ingredient.WynncraftIngredient;
 import me.bed0.jWynn.api.v2.ingredient.WynncraftIngredientIdentificationDetails;
 import me.bed0.jWynn.api.v2.player.PlayerRank;
 import me.bed0.jWynn.config.WynncraftAPIConfig;
+import me.bed0.jWynn.util.DateDeserializer;
 
 import javax.annotation.CheckReturnValue;
 import java.awt.*;
+import java.util.Date;
 import java.util.HashMap;
 
 public class WynncraftAPI extends APIMidpoint {
@@ -45,7 +47,7 @@ public class WynncraftAPI extends APIMidpoint {
             .registerTypeAdapter(new TypeToken<APIResponseV1<WynncraftMapLocation[]>>() {}.getType(), new APIV1MapLocations.APIV1MapLocationsResponseDeserializer())
             .registerTypeAdapter(new TypeToken<APIResponseV1<WynncraftOnlinePlayers>>() {}.getType(), new APIV1OnlinePlayers.APIV1OnlinePlayersDeserializer())
             .registerTypeAdapter(new TypeToken<HashMap<WynncraftIdentification, WynncraftIngredientIdentificationDetails>>() {}.getType(), new WynncraftIngredient.WynncraftIngredientIdentificationDeserializer())
-            .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+            .registerTypeAdapter(Date.class, new DateDeserializer())
             .create();
     public static final String VERSION = "0.7.3";
     private static WynncraftAPI INSTANCE;
