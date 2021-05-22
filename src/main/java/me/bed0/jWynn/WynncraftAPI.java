@@ -45,6 +45,7 @@ public class WynncraftAPI extends APIMidpoint {
             .registerTypeAdapter(new TypeToken<APIResponseV1<WynncraftMapLocation[]>>() {}.getType(), new APIV1MapLocations.APIV1MapLocationsResponseDeserializer())
             .registerTypeAdapter(new TypeToken<APIResponseV1<WynncraftOnlinePlayers>>() {}.getType(), new APIV1OnlinePlayers.APIV1OnlinePlayersDeserializer())
             .registerTypeAdapter(new TypeToken<HashMap<WynncraftIdentification, WynncraftIngredientIdentificationDetails>>() {}.getType(), new WynncraftIngredient.WynncraftIngredientIdentificationDeserializer())
+            .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
             .create();
     public static final String VERSION = "0.7.3";
     private static WynncraftAPI INSTANCE;
