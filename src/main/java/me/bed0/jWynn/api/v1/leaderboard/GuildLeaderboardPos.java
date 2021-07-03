@@ -1,6 +1,7 @@
 package me.bed0.jWynn.api.v1.leaderboard;
 
 import me.bed0.jWynn.WynncraftAPI;
+import me.bed0.jWynn.api.common.WynncraftGuildReward;
 import me.bed0.jWynn.api.v1.endpoints.APIV1GuildStats;
 
 import javax.annotation.CheckReturnValue;
@@ -17,8 +18,11 @@ public class GuildLeaderboardPos {
     private int territories;
     private int membersCount;
     private int num;
+    private int warCount;
+    private String[] badges;
+    private WynncraftGuildReward[] rewards;
 
-    public GuildLeaderboardPos(String name, String prefix, long xp, int level, Date created, int territories, int membersCount, int num) {
+    public GuildLeaderboardPos(String name, String prefix, long xp, int level, Date created, int territories, int membersCount, int num, int warCount, String[] badges, WynncraftGuildReward[] rewards) {
         this.name = name;
         this.prefix = prefix;
         this.xp = xp;
@@ -27,6 +31,9 @@ public class GuildLeaderboardPos {
         this.territories = territories;
         this.membersCount = membersCount;
         this.num = num;
+        this.warCount = warCount;
+        this.badges = badges;
+        this.rewards = rewards;
     }
 
     public String getName() {
@@ -59,6 +66,14 @@ public class GuildLeaderboardPos {
 
     public int getNum() {
         return num;
+    }
+
+    public String[] getBadges() {
+        return badges;
+    }
+
+    public WynncraftGuildReward[] getRewards() {
+        return rewards;
     }
 
     @CheckReturnValue
