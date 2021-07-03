@@ -32,6 +32,8 @@ dependencies {
     implementation 'com.github.Bedo9041:jWynn:VERSION'
 }
 ```
+*Note that old versions of forge (such as those for 1.12) use an old version of Gradle, which requires the use of 'compile' instead of 'implementation'*
+
 Where VERSION can be selected from the [releases page](https://github.com/Bedo9041/jWynn/releases).
 ### Basic Usage
 Firstly, you should create a new instance of WynncraftAPI, this will be the entry point for all future requests using this wrapper. You can optionally pass in a WynncraftAPIConfig object to configure the default behaviour of the wrapper. The configuration set (or the default configuration, if none is specified) can be override on a request-by-request basis.
