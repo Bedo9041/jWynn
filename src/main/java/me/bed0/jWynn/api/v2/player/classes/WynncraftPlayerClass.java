@@ -21,8 +21,9 @@ public class WynncraftPlayerClass {
     private int discoveries;
     private int eventsWon;
     private boolean preEconomyUpdate;
+    private WynncraftPlayerClassRaidCollection raids;
 
-    public WynncraftPlayerClass(String name, int level, WynncraftPlayerClassDungeonCollection dungeons, WynncraftPlayerClassQuests quests, int itemsIdentified, int mobsKilled, WynncraftPlayerClassPvp pvp, int chestsFound, long blocksWalked, int logins, int deaths, int playtime, WynncraftPlayerClassSkills skills, WynncraftPlayerClassProfessions professions, int discoveries, int eventsWon, boolean preEconomyUpdate) {
+    public WynncraftPlayerClass(String name, int level, WynncraftPlayerClassDungeonCollection dungeons, WynncraftPlayerClassQuests quests, int itemsIdentified, int mobsKilled, WynncraftPlayerClassPvp pvp, int chestsFound, long blocksWalked, int logins, int deaths, int playtime, WynncraftPlayerClassSkills skills, WynncraftPlayerClassProfessions professions, int discoveries, int eventsWon, boolean preEconomyUpdate, WynncraftPlayerClassRaidCollection raids) {
         this.name = name;
         this.level = level;
         this.dungeons = dungeons;
@@ -40,6 +41,7 @@ public class WynncraftPlayerClass {
         this.discoveries = discoveries;
         this.eventsWon = eventsWon;
         this.preEconomyUpdate = preEconomyUpdate;
+        this.raids = raids;
     }
 
     public String getName() {
@@ -108,6 +110,10 @@ public class WynncraftPlayerClass {
 
     public boolean isPreEconomyUpdate() {
         return preEconomyUpdate;
+    }
+
+    public WynncraftPlayerClassRaidCollection getRaids() {
+        return raids;
     }
 
     /**

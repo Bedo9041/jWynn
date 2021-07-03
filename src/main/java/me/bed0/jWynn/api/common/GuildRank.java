@@ -4,9 +4,10 @@ public enum GuildRank {
 
     RECRUIT("", '♙'),
     RECRUITER("★", '♘'),
-    CAPTAIN("★★", '♖'),
-    CHIEF("★★★", '♕'),
-    OWNER("★★★★", '♔');
+    CAPTAIN("★★", '♗'),
+    STRATEGIST("★★★", '♖'),
+    CHIEF("★★★★", '♕'),
+    OWNER("★★★★★", '♔');
 
     private String stars;
     private char symbol;
