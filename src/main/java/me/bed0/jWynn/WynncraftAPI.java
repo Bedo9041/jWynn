@@ -22,6 +22,7 @@ import me.bed0.jWynn.api.v2.APIVersion2;
 import me.bed0.jWynn.api.v2.ingredient.WynncraftIngredient;
 import me.bed0.jWynn.api.v2.ingredient.WynncraftIngredientIdentificationDetails;
 import me.bed0.jWynn.api.v2.player.PlayerRank;
+import me.bed0.jWynn.api.v2.player.meta.WynncraftPlayerMetaTag;
 import me.bed0.jWynn.config.WynncraftAPIConfig;
 import me.bed0.jWynn.util.DateDeserializer;
 
@@ -37,6 +38,7 @@ public class WynncraftAPI extends APIMidpoint {
             .registerTypeAdapter(MajorID.class, new MajorID.MajorIDDeserializer())
             .registerTypeAdapter(Color.class, new WynncraftItem.ItemColorDeserializer())
             .registerTypeAdapter(PlayerRank.class, new PlayerRank.PlayerRankDeserializer())
+            .registerTypeAdapter(WynncraftPlayerMetaTag.class, new WynncraftPlayerMetaTag.PlayerTagDeserializer())
             .registerTypeAdapter(WynncraftTerritory[].class, new WynncraftTerritory.WynncraftTerritoryListDeserializer())
             .registerTypeAdapter(new TypeToken<APIResponseV1<GuildList>>() {}.getType(), new APIV1GuildList.APIV1GuildListResponseDeserializer())
             .registerTypeAdapter(new TypeToken<APIResponseV1<WynncraftItem[]>>() {}.getType(), new APIV1ItemDB.APIV1ItemDBResponseDeserializer())
