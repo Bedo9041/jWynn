@@ -8,7 +8,8 @@ public enum PlayerTag {
     VIPPLUS("VIP+", new Color(0, 195, 255)),
     HERO("HERO", new Color(170, 0, 170)),
     CHAMPION("CHAMPION", new Color(241, 196, 15)),
-    OTHER("OTHER", new Color(0, 0, 0));
+    OTHER("OTHER", new Color(0, 0, 0)),
+    NONE("", new Color(0, 0, 0));
 
     private String friendlyName;
     private Color color;

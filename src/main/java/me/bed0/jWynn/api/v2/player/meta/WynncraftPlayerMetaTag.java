@@ -30,6 +30,8 @@ public class WynncraftPlayerMetaTag {
             JsonObject object = jsonElement.getAsJsonObject();
             boolean display = object.get("display").getAsBoolean();
             try {
+                if (object.get("value").isJsonNull())
+                    return new WynncraftPlayerMetaTag(display, PlayerTag.NONE);
                 PlayerTag tag = PlayerTag.valueOf(object.get("value").getAsString().replace("+", "PLUS"));
                 return new WynncraftPlayerMetaTag(display, tag);
             } catch (IllegalArgumentException ex) {
