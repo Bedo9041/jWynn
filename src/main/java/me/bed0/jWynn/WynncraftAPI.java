@@ -51,7 +51,7 @@ public class WynncraftAPI extends APIMidpoint {
             .registerTypeAdapter(new TypeToken<HashMap<WynncraftIdentification, WynncraftIngredientIdentificationDetails>>() {}.getType(), new WynncraftIngredient.WynncraftIngredientIdentificationDeserializer())
             .registerTypeAdapter(Date.class, new DateDeserializer())
             .create();
-    public static final String VERSION = "0.8.2";
+    public static final String VERSION = "0.8.3";
     private static WynncraftAPI INSTANCE;
     private WynncraftAPIConfig config;
     private APIVersion1 v1;
