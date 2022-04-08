@@ -12,10 +12,10 @@ public class WynncraftGuildMember {
     private String name;
     private String uuid;
     private GuildRank rank;
-    private int contributed;
+    private long contributed;
     private Date joined;
 
-    public WynncraftGuildMember(String name, String uuid, GuildRank rank, int contributed, Date joined) {
+    public WynncraftGuildMember(String name, String uuid, GuildRank rank, long contributed, Date joined) {
         this.name = name;
         this.uuid = uuid;
         this.rank = rank;
@@ -35,7 +35,7 @@ public class WynncraftGuildMember {
         return rank;
     }
 
-    public int getContributed() {
+    public long getContributed() {
         return contributed;
     }
 
